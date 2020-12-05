@@ -1,0 +1,361 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6639440b7d10cd4988202e091a5f4e7, type: 3}
+  m_Name: AllBuildingConfig
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: BuildingConfigList
+      Entry: 7
+      Data: 0|System.Collections.Generic.List`1[[BuildingConfig, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 6
+    - Name: 
+      Entry: 7
+      Data: 1|BuildingConfig, Assembly-CSharp
+    - Name: BuildingKey
+      Entry: 1
+      Data: Building_PioneerHub
+    - Name: Color
+      Entry: 7
+      Data: UnityEngine.Color, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 4
+      Data: 0.586016059
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: EnglishName
+      Entry: 1
+      Data: Pioneer Hub
+    - Name: ChineseName
+      Entry: 1
+      Data: "\u62D3\u8352\u8005"
+    - Name: ItemBasicInfo
+      Entry: 1
+      Data: Pioneer Basic Info here
+    - Name: ItemDetailedInfo
+      Entry: 1
+      Data: Pioneer Detailed  Info here
+    - Name: BuildingType
+      Entry: 3
+      Data: 0
+    - Name: ItemSpriteKey
+      Entry: 1
+      Data: Knob
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 2|BuildingConfig, Assembly-CSharp
+    - Name: BuildingKey
+      Entry: 1
+      Data: Building_OxygenGenerator
+    - Name: Color
+      Entry: 7
+      Data: UnityEngine.Color, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0.165094316
+    - Name: 
+      Entry: 4
+      Data: 0.7124639
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: EnglishName
+      Entry: 1
+      Data: Oxygen Generator
+    - Name: ChineseName
+      Entry: 1
+      Data: "\u6C27\u6C14\u751F\u6210\u5668"
+    - Name: ItemBasicInfo
+      Entry: 1
+      Data: Oxygen Generator
+    - Name: ItemDetailedInfo
+      Entry: 1
+      Data: Require Pioneer Hub
+    - Name: BuildingType
+      Entry: 3
+      Data: 0
+    - Name: ItemSpriteKey
+      Entry: 1
+      Data: Knob
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 3|BuildingConfig, Assembly-CSharp
+    - Name: BuildingKey
+      Entry: 1
+      Data: Building_SmallDome
+    - Name: Color
+      Entry: 7
+      Data: UnityEngine.Color, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0.948431969
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: EnglishName
+      Entry: 1
+      Data: Small Dome
+    - Name: ChineseName
+      Entry: 1
+      Data: "\u5C0F\u578B\u73BB\u7483\u7A79\u9876"
+    - Name: ItemBasicInfo
+      Entry: 1
+      Data: Glass Dome can provide space for buildings
+    - Name: ItemDetailedInfo
+      Entry: 1
+      Data: Require oxygen generator and pioneer hub
+    - Name: BuildingType
+      Entry: 3
+      Data: 0
+    - Name: ItemSpriteKey
+      Entry: 1
+      Data: Knob
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 4|BuildingConfig, Assembly-CSharp
+    - Name: BuildingKey
+      Entry: 1
+      Data: Building_MediumDome
+    - Name: Color
+      Entry: 7
+      Data: UnityEngine.Color, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0.948431969
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: EnglishName
+      Entry: 1
+      Data: Medium Dome
+    - Name: ChineseName
+      Entry: 1
+      Data: "\u4E2D\u578B\u73BB\u7483\u7A79\u9876"
+    - Name: ItemBasicInfo
+      Entry: 1
+      Data: Glass Dome can provide space for buildings
+    - Name: ItemDetailedInfo
+      Entry: 1
+      Data: Require oxygen generator and pioneer hub
+    - Name: BuildingType
+      Entry: 3
+      Data: 0
+    - Name: ItemSpriteKey
+      Entry: 1
+      Data: Knob
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 5|BuildingConfig, Assembly-CSharp
+    - Name: BuildingKey
+      Entry: 1
+      Data: Building_LargeDome
+    - Name: Color
+      Entry: 7
+      Data: UnityEngine.Color, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0.948431969
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: EnglishName
+      Entry: 1
+      Data: Large Dome
+    - Name: ChineseName
+      Entry: 1
+      Data: "\u73BB\u7483\u7A79\u9876"
+    - Name: ItemBasicInfo
+      Entry: 1
+      Data: Glass Dome can provide space for buildings
+    - Name: ItemDetailedInfo
+      Entry: 1
+      Data: Require oxygen generator and pioneer hub
+    - Name: BuildingType
+      Entry: 3
+      Data: 0
+    - Name: ItemSpriteKey
+      Entry: 1
+      Data: Knob
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 6|BuildingConfig, Assembly-CSharp
+    - Name: BuildingKey
+      Entry: 1
+      Data: Building_UnderseaApartment
+    - Name: Color
+      Entry: 7
+      Data: UnityEngine.Color, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0.07291821
+    - Name: 
+      Entry: 4
+      Data: 0.8207547
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: EnglishName
+      Entry: 1
+      Data: Undersea Apartment
+    - Name: ChineseName
+      Entry: 1
+      Data: "\u6D77\u5E95\u516C\u5BD3"
+    - Name: ItemBasicInfo
+      Entry: 1
+      Data: Apartment accomodates people
+    - Name: ItemDetailedInfo
+      Entry: 1
+      Data: Should be built inside Dome
+    - Name: BuildingType
+      Entry: 3
+      Data: 0
+    - Name: ItemSpriteKey
+      Entry: 1
+      Data: Knob
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  BuildingConfigRawList:
+  - Color: {r: 1, g: 0.58601606, b: 0, a: 1}
+    EnglishName: Pioneer Hub
+    ChineseName: "\u62D3\u8352\u8005"
+    ItemBasicInfo: Pioneer Basic Info here
+    ItemDetailedInfo: Pioneer Detailed  Info here
+    BuildingPrefab: {fileID: 2759307234143428611, guid: 3946196bb642dbc41a00361fc43105c2,
+      type: 3}
+    BuildingType: 0
+    ItemSprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  - Color: {r: 0.16509432, g: 0.7124639, b: 1, a: 1}
+    EnglishName: Oxygen Generator
+    ChineseName: "\u6C27\u6C14\u751F\u6210\u5668"
+    ItemBasicInfo: Oxygen Generator
+    ItemDetailedInfo: Require Pioneer Hub
+    BuildingPrefab: {fileID: 3935650678939033467, guid: 4201e7f59d0fd9b48b15acc8c2421a9f,
+      type: 3}
+    BuildingType: 0
+    ItemSprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  - Color: {r: 0, g: 0.94843197, b: 1, a: 1}
+    EnglishName: Small Dome
+    ChineseName: "\u5C0F\u578B\u73BB\u7483\u7A79\u9876"
+    ItemBasicInfo: Glass Dome can provide space for buildings
+    ItemDetailedInfo: Require oxygen generator and pioneer hub
+    BuildingPrefab: {fileID: 3938194734319382156, guid: db78d1fb2e0fe8a49ac241ecf305a8de,
+      type: 3}
+    BuildingType: 0
+    ItemSprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  - Color: {r: 0, g: 0.94843197, b: 1, a: 1}
+    EnglishName: Medium Dome
+    ChineseName: "\u4E2D\u578B\u73BB\u7483\u7A79\u9876"
+    ItemBasicInfo: Glass Dome can provide space for buildings
+    ItemDetailedInfo: Require oxygen generator and pioneer hub
+    BuildingPrefab: {fileID: 3938194734319382156, guid: 4992898d47dde4148b897d760f9437a2,
+      type: 3}
+    BuildingType: 0
+    ItemSprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  - Color: {r: 0, g: 0.94843197, b: 1, a: 1}
+    EnglishName: Large Dome
+    ChineseName: "\u73BB\u7483\u7A79\u9876"
+    ItemBasicInfo: Glass Dome can provide space for buildings
+    ItemDetailedInfo: Require oxygen generator and pioneer hub
+    BuildingPrefab: {fileID: 3938194734319382156, guid: 9e728f7e6716ccc4d8a249e0df80c304,
+      type: 3}
+    BuildingType: 0
+    ItemSprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  - Color: {r: 0.07291821, g: 0.8207547, b: 0, a: 1}
+    EnglishName: Undersea Apartment
+    ChineseName: "\u6D77\u5E95\u516C\u5BD3"
+    ItemBasicInfo: Apartment accomodates people
+    ItemDetailedInfo: Should be built inside Dome
+    BuildingPrefab: {fileID: 6635406714324194422, guid: 63d7664cc8dbb0f4583c8239e28f7624,
+      type: 3}
+    BuildingType: 0
+    ItemSprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}

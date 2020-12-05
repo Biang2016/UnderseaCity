@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: MechaEditorAreaGrid
+  m_Shader: {fileID: 4800000, guid: cb5124dde26e46e4189cd9ce6f196b06, type: 3}
+  m_ShaderKeywords: WPOS_OFF
+  m_LightmapFlags: 5
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BasePatternTex:
+        m_Texture: {fileID: 2800000, guid: eb17463f1042f924e9107baa7df30815, type: 3}
+        m_Scale: {x: 0.025, y: 0.025}
+        m_Offset: {x: 0.03125, y: 0.03125}
+    - _CenterGridTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 0.1, y: 0.1}
+        m_Offset: {x: 0, y: 0}
+    - _CenterLineTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 0.05, y: 0.05}
+        m_Offset: {x: 0, y: 0}
+    - _EdgeTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 0.1, y: 0.1}
+        m_Offset: {x: 0, y: 0}
+    - _TextTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 0.05, y: 0.05}
+        m_Offset: {x: 0.06, y: -0.08}
+    m_Floats:
+    - _BasePatternEmi: 2.15
+    - _BasePatternMet: 1
+    - _BasePatternSmo: 1
+    - _CenterGridEmi: 0
+    - _CenterGridMet: 0
+    - _CenterGridSmo: 0.3
+    - _CenterLineEmi: 0
+    - _CenterLineMet: 0.113
+    - _CenterLineSmo: 0.3
+    - _EdgeEmi: 0
+    - _EdgeMet: 0.282
+    - _EdgeSmo: 0.53
+    - _GlobalEmi: 1.88
+    - _GlobalMet: 2
+    - _GlobalSmo: 2
+    - _TextEmi: 0
+    - _TextMet: 0
+    - _TextSmo: 0
+    - _TilingX: 2
+    - _TilingY: 2
+    - _WorldPosition: 0
+    m_Colors:
+    - _BaseColor: {r: 0, g: 0, b: 0, a: 1}
+    - _BasePatternColor: {r: 0, g: 0.22745132, b: 1, a: 0.7254902}
+    - _CenterGridColor: {r: 0.4528302, g: 0.4528302, b: 0.4528302, a: 0.47058824}
+    - _CenterLineColor: {r: 0.49056602, g: 0.34015664, b: 0.34015664, a: 0.34117648}
+    - _EdgeColor: {r: 0.009433985, g: 0.009433985, b: 0.009433985, a: 0.9372549}
+    - _TextColor: {r: 0.5735294, g: 0.5735294, b: 0.5735294, a: 1}
+    - _WolrdBpattTiling: {r: 0.2, g: 0.2, b: 0.17, a: 0}
+    - _WolrdCgridTiling: {r: 0.1, g: 0.1, b: 0, a: 0}
+    - _WolrdClineTiling: {r: 0.05, g: 0.05, b: 0, a: 0}
+    - _WolrdEdgeTiling: {r: 0.1, g: 0.1, b: 0, a: 0}
+    - _WolrdTextTiling: {r: 0.05, g: 0.05, b: -0.38, a: -0.12}
