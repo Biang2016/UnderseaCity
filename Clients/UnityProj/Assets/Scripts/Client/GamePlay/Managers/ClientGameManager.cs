@@ -1,8 +1,6 @@
 ﻿using BiangStudio.DragHover;
 using BiangStudio.GamePlay;
 using BiangStudio.GamePlay.UI;
-using BiangStudio.GridBackpack;
-using BiangStudio.Log;
 using BiangStudio.Singleton;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -86,7 +84,7 @@ public class ClientGameManager : MonoSingleton<ClientGameManager>
 
         DragManager.Awake();
         MouseHoverManager.Awake();
-        MouseHoverManager.Initialize(
+        MouseHoverManager.Init(
             () => Input.GetMouseButtonDown(0),
             () => Input.GetMouseButtonUp(0),
             () => Input.mousePosition);

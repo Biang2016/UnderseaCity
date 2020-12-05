@@ -22,15 +22,15 @@ public class DragExecuteManager : TSingletonBaseManager<DragExecuteManager>
                 return true;
             }
             ,
-            ScreenMousePositionToWorld_CityEditorInventory,
+            ScreenMousePositionToWorld_CityInventory,
             delegate (Building building, Collider collider, DragProcessor dragProcessor) { },
             delegate (Building building, Collider collider, DragProcessor dragProcessor) { }
         );
     }
 
-    private bool ScreenMousePositionToWorld_CityEditorInventory(out Vector3 pos_world, out Vector3 pos_local, out Vector3 pos_matrix, out GridPos gp_matrix)
+    private bool ScreenMousePositionToWorld_CityInventory(out Vector3 pos_world, out Vector3 pos_local, out Vector3 pos_matrix, out GridPos gp_matrix)
     {
-        if (LevelManager.Instance.City.CityEditArea.GetMousePosOnThisArea(out pos_world, out pos_local, out pos_matrix, out gp_matrix))
+        if (LevelManager.Instance.City.CityEditAreaIndicator.GetMousePosOnThisArea(out pos_world, out pos_local, out pos_matrix, out gp_matrix))
         {
             return true;
         }

@@ -6,14 +6,14 @@ using BiangStudio.DragHover;
 using BiangStudio.GameDataFormat.Grid;
 using BiangStudio.GamePlay;
 using BiangStudio.ObjectPool;
-using BiangStudio.ShapedInventory;
+using BiangStudio.AdvancedInventory;
 using Newtonsoft.Json;
 using Sirenix.OdinInspector;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Building : PoolObject, IMouseHoverComponent
+public class Building : PoolObject, IMouseHoverComponent, IDraggable
 {
     [PropertyOrder(-10)]
     [Title("Data")]
@@ -91,7 +91,7 @@ public class Building : PoolObject, IMouseHoverComponent
             buildingInfo.InventoryItem.OnSetGridPosHandler = (gridPos_World) =>
             {
                 GridPosR.ApplyGridPosToLocalTrans(gridPos_World, transform, ConfigManager.GRID_SIZE);
-                CityInfo?.CityEditorInventory.RefreshConflictAndIsolation();
+                CityInfo?.CityInventory.RefreshConflictAndIsolation();
             };
             buildingInfo.InventoryItem.OnIsolatedHandler = (shown) =>
             {
@@ -204,6 +204,38 @@ public class Building : PoolObject, IMouseHoverComponent
     }
 
     public void MouseHoverComponent_OnMousePressLeaveImmediately()
+    {
+    }
+
+    #endregion
+
+    #region IDraggable
+
+    public void Draggable_OnMouseDown(DragAreaIndicator dragAreaIndicator, Collider collider)
+    {
+    }
+
+    public void Draggable_OnMousePressed(DragAreaIndicator dragAreaIndicator, Vector3 diffFromStart, Vector3 deltaFromLastFrame)
+    {
+    }
+
+    public void Draggable_OnMouseUp(DragAreaIndicator dragAreaIndicator, Vector3 diffFromStart, Vector3 deltaFromLastFrame)
+    {
+    }
+
+    public void Draggable_OnPaused()
+    {
+    }
+
+    public void Draggable_OnResume()
+    {
+    }
+
+    public void Draggable_OnSucceedWhenPaused()
+    {
+    }
+
+    public void Draggable_SetStates(ref bool canDrag, ref DragAreaIndicator dragFromDragAreaIndicator)
     {
     }
 

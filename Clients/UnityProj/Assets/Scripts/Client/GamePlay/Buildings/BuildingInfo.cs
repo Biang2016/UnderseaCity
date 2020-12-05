@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using BiangStudio.GameDataFormat.Grid;
-using BiangStudio.ShapedInventory;
+using BiangStudio.AdvancedInventory;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
@@ -31,8 +31,10 @@ public class BuildingInfo : IInventoryItemContentInfo
 
     public string ItemCategoryName => BuildingConfig.BuildingType.ToString();
     public string ItemName => BuildingConfig.EnglishName;
+    public string ItemQuality => "";
     public string ItemBasicInfo => BuildingConfig.ItemBasicInfo;
     public string ItemDetailedInfo => BuildingConfig.ItemDetailedInfo;
+    public Sprite ItemSprite => null;
     public string ItemSpriteKey => BuildingConfig.ItemSpriteKey;
     public Color ItemColor => Color.white;
 

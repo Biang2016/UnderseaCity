@@ -2,8 +2,7 @@
 using BiangStudio.DragHover;
 using BiangStudio.GameDataFormat.Grid;
 using BiangStudio.GamePlay.UI;
-using BiangStudio.GridBackpack;
-using BiangStudio.ShapedInventory;
+using BiangStudio.AdvancedInventory;
 using BiangStudio.Singleton;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -19,7 +18,6 @@ public class LevelManager : MonoSingleton<LevelManager>
     public void StartGame()
     {
         CityInfo cityInfo = new CityInfo(new CityConfig());
-        cityInfo.AddBuildingInfo(new BuildingInfo(ConfigManager.BuildingConfigDict["Building_PioneerHub"]), GridPosR.Zero);
         AddCity(cityInfo);
 
         BuildingSelectPanel = UIManager.Instance.ShowUIForms<BuildingSelectPanel>();
@@ -47,41 +45,34 @@ public class LevelManager : MonoSingleton<LevelManager>
         }
 
         GridPosR worldGP = DragManager.Instance.GetDragProcessor<Building>().CurrentMousePosition_World.ToGridPosR_XZ();
-        GridPosR matrixGP = City.CityInfo.CityEditorInventory.CoordinateTransformationHandler_FromPosToMatrixIndex.Invoke(worldGP);
+        GridPosR matrixGP = City.CityInfo.CityInventory.CoordinateTransformationHandler_FromPosToMatrixIndex.Invoke(worldGP);
         if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
         {
-            if (CurrentFakeBuilding != null)
+            InventoryItem previewItem = City.CityInfo.CityInventory.InventoryInfo.PreviewInventoryItem;
+            if (previewItem != null)
             {
-                CurrentFakeBuilding.BuildingInfo.InventoryItem.SetGridPosition(matrixGP);
-                City.CityInfo.CityEditorInventory.RefreshConflictAndIsolation(out List<InventoryItem> conflictItems, out List<InventoryItem> _);
-                if (conflictItems.Count > 0)
+                if (City.CityInfo.CityInventory.CheckSpaceAvailable(previewItem.OccupiedGridPositions_Matrix))
                 {
-                    CurrentFakeBuilding.BuildingInfo.RemoveBuildingInfo();
+                    City.CityInfo.CityInventory.PutDownItem(previewItem);
                 }
-
-                CurrentFakeBuilding = null;
+                else
+                {
+                    City.CityInfo.CityInventory.RemoveItem(previewItem, true);
+                }
             }
         }
 
         if (!string.IsNullOrWhiteSpace(CurrentSelectedBuildingKey) && !EventSystem.current.IsPointerOverGameObject())
         {
-            if (CurrentFakeBuilding == null)
+            if (City.CityInfo.CityInventory.InventoryInfo.PreviewInventoryItem == null)
             {
                 BuildingInfo bi = new BuildingInfo(ConfigManager.BuildingConfigDict[CurrentSelectedBuildingKey].Clone());
-                if (City.CityInfo.AddBuildingInfo(bi, matrixGP))
-                {
-                    CurrentFakeBuilding = City.BuildingDict[bi.GUID];
-                }
+                City.CityInfo.AddBuildingInfo(bi, matrixGP, true);
             }
 
-            if (CurrentFakeBuilding != null)
-            {
-                CurrentFakeBuilding.BuildingInfo.InventoryItem.SetGridPosition(matrixGP);
-            }
+            City.CityInfo.CityInventory.InventoryInfo.PreviewInventoryItem?.SetGridPosition(matrixGP);
         }
     }
-
-    private Building CurrentFakeBuilding;
 
     private void AddCity(CityInfo cityInfo)
     {
@@ -104,10 +95,9 @@ public class LevelManager : MonoSingleton<LevelManager>
 
     public void OnClearSelectBuildingButton()
     {
-        if (CurrentFakeBuilding != null)
+        if (City.CityInfo.CityInventory.InventoryInfo.PreviewInventoryItem != null)
         {
-            CurrentFakeBuilding.BuildingInfo.RemoveBuildingInfo();
-            CurrentFakeBuilding = null;
+            ((BuildingInfo) (City.CityInfo.CityInventory.InventoryInfo.PreviewInventoryItem.ItemContentInfo)).RemoveBuildingInfo();
         }
 
         CurrentSelectedBuildingKey = "";
