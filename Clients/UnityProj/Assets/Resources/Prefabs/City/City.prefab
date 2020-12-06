@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5152794473923978884
 Transform:
   m_ObjectHideFlags: 0
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 312216450397459096}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 4, y: 4, z: 4}
   m_Children: []
   m_Father: {fileID: 2169196869840222255}
   m_RootOrder: 0
@@ -140,8 +140,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MeshRenderer_Range: {fileID: 6585080314675198336}
   MeshRenderer_Grid: {fileID: 3958559093562415188}
+  CityConfig:
+    PioneerHubRadius: 4
+    SmallDomeRadius_Inner: 4
+    SmallDomeRadius_Outer: 4
+    MediumDomeRadius_Inner: 4
+    MediumDomeRadius_Outer: 4
+    LargeDomeRadius_Inner: 4
+    LargeDomeRadius_Outer: 4
   BuildingContainer: {fileID: 1252827715592200724}
-  CityInventoryGridRoot: {fileID: 2169196869179295827}
   CityInventoryVirtualOccupationQuadRoot: {fileID: 2169196869934204755}
   CityEditAreaIndicator: {fileID: 7907335913827426785}
   CityInventoryGridContainer: {fileID: 2169196869179295824}
@@ -188,7 +195,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2169196869179295824}
-  - component: {fileID: 2169196869179295827}
   m_Layer: 0
   m_Name: CityInventoryGridRoot
   m_TagString: Untagged
@@ -210,18 +216,6 @@ Transform:
   m_Father: {fileID: 3579185194696288458}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2169196869179295827
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2169196869179295825}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c13379baadef3f34d9b7e0776010e067, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2169196869840222252
 GameObject:
   m_ObjectHideFlags: 0

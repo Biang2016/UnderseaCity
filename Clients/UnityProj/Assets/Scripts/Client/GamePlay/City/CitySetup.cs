@@ -3,31 +3,40 @@ using BiangStudio.DragHover;
 using BiangStudio.GamePlay.UI;
 using UnityEngine;
 
-public class CityConfiguration : MonoBehaviour
+public class CitySetup : MonoBehaviour
 {
     public GameObject CityInventoryVirtualOccupationQuadPrefab;
     public GameObject CityInventoryGridPrefab;
 
     private CityInventory CityInventory;
+
     public City City;
-    private DragProcessor<Building> DragProcessor_Building;
+
+    [SerializeField]
+    private CityConfig CityConfig;
 
     public List<Building> BuildingPrefabList = new List<Building>();
-    public LayerMask BuildingLayerMask;
 
-    public string InventoryName;
-    public int Rows;
-    public int Columns;
+    [SerializeField]
+    private LayerMask BuildingLayerMask;
+
+    [SerializeField]
+    private string InventoryName;
+
+    [SerializeField]
+    private int Rows;
+
+    [SerializeField]
+    private int Columns;
 
     private void Start()
     {
-        InitDragProcessor();
-        InitCityInventory();
+        Init();
     }
 
-    private void InitDragProcessor()
+    private void Init()
     {
-        DragProcessor_Building = new DragProcessor<Building>();
+        DragProcessor<Building> DragProcessor_Building = new DragProcessor<Building>();
         DragProcessor_Building.Init(
             UIManager.Instance.UICamera,
             BuildingLayerMask.value,
@@ -40,10 +49,6 @@ public class CityConfiguration : MonoBehaviour
             delegate(Building building, Collider collider, DragProcessor dragProcessor) { },
             delegate(Building building, Collider collider, DragProcessor dragProcessor) { }
         );
-    }
-
-    private void InitCityInventory()
-    {
         CityInventory = new CityInventory(
             InventoryName,
             City.CityEditAreaIndicator,
@@ -62,7 +67,7 @@ public class CityConfiguration : MonoBehaviour
         );
 
         CityInventory.ToggleDebugKeyDownHandler = () => Input.GetKeyDown(KeyCode.BackQuote); // Toggle debug log
-        City.Init(CityInventory, BuildingPrefabList);
+        City.Init(CityInventory, CityConfig, BuildingPrefabList);
         CityInventory.City = City;
     }
 }

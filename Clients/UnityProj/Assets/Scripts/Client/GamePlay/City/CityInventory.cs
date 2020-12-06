@@ -12,6 +12,10 @@ public class CityInventory : Inventory
     private InstantiatePrefabDelegate InstantiateCityInventoryGridHandler;
     private InstantiatePrefabDelegate InstantiateCityInventoryVirtualOccupationQuadHandler;
 
+    public bool[,] InventoryValidMatrix; // column, row
+    public BuildingCoverMaskGroup[,] BuildingCoverMaskMatrix; // column, row
+    public BuildingCoverMaskGroup[,] BuildingCoverMaskMatrix_IncludingPreview; // column, row
+
     public CityInventory(
         string inventoryName,
         DragAreaIndicator dragAreaIndicator,
@@ -38,6 +42,9 @@ public class CityInventory : Inventory
         DragProcessor = dragProcessor;
         InstantiateCityInventoryGridHandler = instantiateCityInventoryGridHandler;
         InstantiateCityInventoryVirtualOccupationQuadHandler = instantiateCityInventoryVirtualOccupationQuadHandler;
+        InventoryValidMatrix = new bool[columns, rows];
+        BuildingCoverMaskMatrix = new BuildingCoverMaskGroup[columns, rows];
+        BuildingCoverMaskMatrix_IncludingPreview = new BuildingCoverMaskGroup[columns, rows];
     }
 
     public CityInventoryGrid CreateCityInventoryGrid(Transform transform)

@@ -51,6 +51,9 @@ public class Building : MonoBehaviour, IMouseHoverComponent, IDraggable
         GridPosR.ApplyGridPosToLocalTrans(gridPos_World, transform, CityInventory.GridSize);
         CityInventory.RefreshConflictAndIsolation();
         SetVirtualGridPos(gridPos_World);
+
+        City.RefreshBuildingCoverMaskMatrix(true);
+        City.RefreshBuildingRangeGridView(LevelManager.Instance.CurrentSelectedBuildingKey);
     }
 
     private void SetVirtualGridPos(GridPosR gridPos_World)

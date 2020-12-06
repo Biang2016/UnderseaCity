@@ -1,33 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &764976042411567963
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 639459755615192831}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fcf8efe3c1195d4409a29630b6404b66, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BuildingModelTwinkleConfigSSO: {fileID: 11400000, guid: 8ec93b29e491d7f498d9d66a3d1b0625,
-    type: 2}
---- !u!114 &6643408613942217353
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3175671226198722682}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fcf8efe3c1195d4409a29630b6404b66, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BuildingModelTwinkleConfigSSO: {fileID: 11400000, guid: 8ec93b29e491d7f498d9d66a3d1b0625,
-    type: 2}
 --- !u!1001 &3637403508903647563
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -135,13 +107,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1260915280276633232, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
         type: 3}
+      propertyPath: BuildingInfo.requireBuildingCoverList.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1260915280276633232, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+        type: 3}
       propertyPath: BuildingInfo.buildingKey
-      value: UnderseaApartment
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1260915280276633232, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
         type: 3}
       propertyPath: BuildingInfo.englishName
-      value: Undersea Apartment
+      value: Undersea Apartment (Big)
       objectReference: {fileID: 0}
     - target: {fileID: 1260915280276633232, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
         type: 3}
@@ -186,7 +163,77 @@ PrefabInstance:
     - target: {fileID: 1260915280276633232, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
         type: 3}
       propertyPath: BuildingInfo.BuildingOccupiedGridPositionList.Array.data[1].x
-      value: 1
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1260915280276633232, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+        type: 3}
+      propertyPath: BuildingInfo.requireBuildingCover
+      value: 292
+      objectReference: {fileID: 0}
+    - target: {fileID: 1260915280276633232, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+        type: 3}
+      propertyPath: BuildingInfo.provideBuildingCoverByOccupation
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1260915280276633232, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+        type: 3}
+      propertyPath: BuildingInfo.provideBuildingCoverInnerRange
+      value: 4096
+      objectReference: {fileID: 0}
+    - target: {fileID: 1260915280276633232, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+        type: 3}
+      propertyPath: BuildingInfo.provideBuildingCoverInnerRange_Radius
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1260915280276633232, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+        type: 3}
+      propertyPath: BuildingInfo.requireBuildingCoverList.Array.data[0]
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1260915280276633232, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+        type: 3}
+      propertyPath: BuildingInfo.requireBuildingCoverList.Array.data[1]
+      value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 1260915280276633232, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+        type: 3}
+      propertyPath: BuildingInfo.requireBuildingCoverList.Array.data[2]
+      value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 1260915280276633232, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+        type: 3}
+      propertyPath: BuildingInfo.requireBuildingCoverList.Array.data[0].Mask_Part1
+      value: 34
+      objectReference: {fileID: 0}
+    - target: {fileID: 1260915280276633232, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+        type: 3}
+      propertyPath: BuildingInfo.forbidBuildingCover.Mask_Part1
+      value: 123464
+      objectReference: {fileID: 0}
+    - target: {fileID: 1260915280276633232, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+        type: 3}
+      propertyPath: BuildingInfo.provideBuildingCoverByOccupation.Mask_Part1
+      value: 65536
+      objectReference: {fileID: 0}
+    - target: {fileID: 1260915280276633232, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+        type: 3}
+      propertyPath: BuildingInfo.provideBuildingCoverOuterRange_Radius
+      value: 2.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1260915280276633232, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+        type: 3}
+      propertyPath: BuildingInfo.provideBuildingCoverOuterRange.Mask_Part1
+      value: 4096
+      objectReference: {fileID: 0}
+    - target: {fileID: 1260915280276633232, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+        type: 3}
+      propertyPath: BuildingInfo.requireBuildingCoverList.Array.data[1].Mask_Part1
+      value: 258
+      objectReference: {fileID: 0}
+    - target: {fileID: 1260915280276633232, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+        type: 3}
+      propertyPath: BuildingInfo.requireBuildingCoverList.Array.data[2].Mask_Part1
+      value: 258
       objectReference: {fileID: 0}
     - target: {fileID: 6616741039188916417, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
         type: 3}
@@ -221,7 +268,7 @@ PrefabInstance:
     - target: {fileID: 7059374381596298502, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
         type: 3}
       propertyPath: m_Name
-      value: Building_UnderseaApartment
+      value: Building_UnderseaApartment_Higher
       objectReference: {fileID: 0}
     - target: {fileID: 8922207720215023247, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
         type: 3}
@@ -302,7 +349,7 @@ PrefabInstance:
     - target: {fileID: 5309277208809338386, guid: 6505c5b1f033442c4bf82c6641ecccf0,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 5309277208809338386, guid: 6505c5b1f033442c4bf82c6641ecccf0,
         type: 3}
@@ -467,6 +514,16 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: e8e4f8465a41d8d4692361a4d35f24c4, type: 2}
+    - target: {fileID: -7511558181221131132, guid: eb0ca4566ee37ac4fb5a48268fbf52b7,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f4b96c87d0c1bbb409e0092e761b92a7, type: 2}
+    - target: {fileID: -7511558181221131132, guid: eb0ca4566ee37ac4fb5a48268fbf52b7,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7243b6b6f9690ec45804ee957f8f20a0, type: 2}
     - target: {fileID: -6208956191839556987, guid: eb0ca4566ee37ac4fb5a48268fbf52b7,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -510,19 +567,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: eb0ca4566ee37ac4fb5a48268fbf52b7,
         type: 3}
       propertyPath: m_Name
-      value: UnderseaApartment
+      value: UnderseaApartment_Higher
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb0ca4566ee37ac4fb5a48268fbf52b7, type: 3}
---- !u!1 &3175671226198722682 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5149316674067084113, guid: eb0ca4566ee37ac4fb5a48268fbf52b7,
-    type: 3}
-  m_PrefabInstance: {fileID: 7738393743824436011}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &639459755615192831 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7186510658615688660, guid: eb0ca4566ee37ac4fb5a48268fbf52b7,
-    type: 3}
-  m_PrefabInstance: {fileID: 7738393743824436011}
-  m_PrefabAsset: {fileID: 0}

@@ -18,7 +18,7 @@ public class BuildingButton : PoolObject
     {
         BuildingInfo = buildingInfo;
         Button.image.color = buildingInfo.color;
-        Button.onClick.AddListener(() => { LevelManager.Instance.OnClickSelectBuildingButton(buildingInfo.buildingKey); });
+        Button.onClick.AddListener(() => { LevelManager.Instance.CurrentSelectedBuildingKey = buildingInfo.buildingKey; });
         Text.text = buildingInfo.englishName;
     }
 }

@@ -123,12 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!20 &618780707 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 1500443317, guid: 776f29a684a9a412eb9b5171aa4742bd,
-    type: 3}
-  m_PrefabInstance: {fileID: 1750762082}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1598043322
 GameObject:
   m_ObjectHideFlags: 0
@@ -163,19 +157,29 @@ MonoBehaviour:
   CityInventoryGridPrefab: {fileID: 8250577185448553539, guid: 577ebf322eadf514ab2e50da67262f7e,
     type: 3}
   City: {fileID: 4129417477085970609}
+  CityConfig:
+    OxygenGeneratorCover: 7
+    PioneerHubRadius: 4
+    SmallDomeRadius_Inner: 1.5
+    SmallDomeRadius_Around: 4
+    MediumDomeRadius_Inner: 2.3
+    MediumDomeRadius_Around: 4
+    LargeDomeRadius_Inner: 3.2
+    LargeDomeRadius_Around: 4
   BuildingPrefabList:
   - {fileID: 2759307234143428611, guid: 3946196bb642dbc41a00361fc43105c2, type: 3}
   - {fileID: 3935650678939033467, guid: 4201e7f59d0fd9b48b15acc8c2421a9f, type: 3}
   - {fileID: 3938194734319382156, guid: db78d1fb2e0fe8a49ac241ecf305a8de, type: 3}
   - {fileID: 3938194734319382156, guid: 4992898d47dde4148b897d760f9437a2, type: 3}
   - {fileID: 3938194734319382156, guid: 9e728f7e6716ccc4d8a249e0df80c304, type: 3}
+  - {fileID: 6635406714324194422, guid: f06cef906b21ea94eb0a209beb4ef878, type: 3}
   - {fileID: 6635406714324194422, guid: 63d7664cc8dbb0f4583c8239e28f7624, type: 3}
   BuildingLayerMask:
     serializedVersion: 2
     m_Bits: 256
   InventoryName: City
-  Rows: 19
-  Columns: 19
+  Rows: 39
+  Columns: 39
 --- !u!4 &1598043324
 Transform:
   m_ObjectHideFlags: 0
@@ -197,17 +201,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1500443317, guid: 776f29a684a9a412eb9b5171aa4742bd, type: 3}
-      propertyPath: orthographic size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1500443317, guid: 776f29a684a9a412eb9b5171aa4742bd, type: 3}
-      propertyPath: field of view
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 1500443317, guid: 776f29a684a9a412eb9b5171aa4742bd, type: 3}
-      propertyPath: orthographic
-      value: 0
+    - target: {fileID: 1217891125, guid: 776f29a684a9a412eb9b5171aa4742bd, type: 3}
+      propertyPath: m_Name
+      value: SubLight
       objectReference: {fileID: 0}
     - target: {fileID: 2180581897189703316, guid: 776f29a684a9a412eb9b5171aa4742bd,
         type: 3}
@@ -231,29 +227,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2180581897189703316, guid: 776f29a684a9a412eb9b5171aa4742bd,
         type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 5.6613493
+      propertyPath: m_LocalPosition.x
+      value: -3.9999998
       objectReference: {fileID: 0}
     - target: {fileID: 2180581897189703316, guid: 776f29a684a9a412eb9b5171aa4742bd,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4.003177
+      value: -3.9999993
       objectReference: {fileID: 0}
     - target: {fileID: 2180581897189703316, guid: 776f29a684a9a412eb9b5171aa4742bd,
         type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -4.0031776
+      propertyPath: m_LocalPosition.y
+      value: 5.6568546
       objectReference: {fileID: 0}
-    - target: {fileID: 2575491367825214015, guid: 776f29a684a9a412eb9b5171aa4742bd,
+    - target: {fileID: 3324297081776261936, guid: 776f29a684a9a412eb9b5171aa4742bd,
         type: 3}
-      propertyPath: MainCamera
+      propertyPath: CityConfiguration
       value: 
-      objectReference: {fileID: 618780707}
-    - target: {fileID: 3203221681298312851, guid: 776f29a684a9a412eb9b5171aa4742bd,
-        type: 3}
-      propertyPath: orthographic size
-      value: 9
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1598043323}
     - target: {fileID: 3324297081776261936, guid: 776f29a684a9a412eb9b5171aa4742bd,
         type: 3}
       propertyPath: City
@@ -261,38 +252,33 @@ PrefabInstance:
       objectReference: {fileID: 4129417477085970609}
     - target: {fileID: 3324297081776261936, guid: 776f29a684a9a412eb9b5171aa4742bd,
         type: 3}
-      propertyPath: CityConfiguration
+      propertyPath: CitySetup
       value: 
       objectReference: {fileID: 1598043323}
     - target: {fileID: 5505692199800095634, guid: 776f29a684a9a412eb9b5171aa4742bd,
         type: 3}
-      propertyPath: CurrentConfigData.VerAngle
-      value: 45
+      propertyPath: DistanceLevels.Array.size
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5505692199800095634, guid: 776f29a684a9a412eb9b5171aa4742bd,
         type: 3}
-      propertyPath: CurrentConfigData.Distance
-      value: 8.105123
+      propertyPath: DistanceLevels_ScaleForBattleUI.Array.size
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5505692199800095634, guid: 776f29a684a9a412eb9b5171aa4742bd,
         type: 3}
-      propertyPath: TargetConfigData.VerAngle
-      value: 45
+      propertyPath: OrthographicSizeLevels.Array.size
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5505692199800095634, guid: 776f29a684a9a412eb9b5171aa4742bd,
         type: 3}
-      propertyPath: TargetConfigData.Distance
-      value: 8
+      propertyPath: InGameUISizeLevels.Array.size
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5505692199800095634, guid: 776f29a684a9a412eb9b5171aa4742bd,
         type: 3}
-      propertyPath: InGameUISize
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5505692199800095634, guid: 776f29a684a9a412eb9b5171aa4742bd,
-        type: 3}
-      propertyPath: TargetConfigData.HorAngle
-      value: 45
+      propertyPath: LastConfigData.HorAngle
+      value: 45.217888
       objectReference: {fileID: 0}
     - target: {fileID: 5505692199800095634, guid: 776f29a684a9a412eb9b5171aa4742bd,
         type: 3}
@@ -301,108 +287,48 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5505692199800095634, guid: 776f29a684a9a412eb9b5171aa4742bd,
         type: 3}
-      propertyPath: LastConfigData.HorAngle
-      value: 45
+      propertyPath: panSpeed
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 5505692199800095634, guid: 776f29a684a9a412eb9b5171aa4742bd,
         type: 3}
-      propertyPath: LastConfigData.VerAngle
-      value: 45
+      propertyPath: DistanceLevels.Array.data[8]
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 5505692199800095634, guid: 776f29a684a9a412eb9b5171aa4742bd,
         type: 3}
-      propertyPath: LastConfigData.Distance
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 5505692199800095634, guid: 776f29a684a9a412eb9b5171aa4742bd,
-        type: 3}
-      propertyPath: OrthographicSizeLevels.Array.data[0]
+      propertyPath: DistanceLevels_ScaleForBattleUI.Array.data[8]
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5505692199800095634, guid: 776f29a684a9a412eb9b5171aa4742bd,
         type: 3}
-      propertyPath: OrthographicSizeLevels.Array.data[1]
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5505692199800095634, guid: 776f29a684a9a412eb9b5171aa4742bd,
-        type: 3}
-      propertyPath: OrthographicSizeLevels.Array.data[2]
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5505692199800095634, guid: 776f29a684a9a412eb9b5171aa4742bd,
-        type: 3}
-      propertyPath: OrthographicSizeLevels.Array.data[3]
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5505692199800095634, guid: 776f29a684a9a412eb9b5171aa4742bd,
-        type: 3}
-      propertyPath: OrthographicSizeLevels.Array.data[4]
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 5505692199800095634, guid: 776f29a684a9a412eb9b5171aa4742bd,
-        type: 3}
-      propertyPath: OrthographicSizeLevels.Array.data[5]
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 5505692199800095634, guid: 776f29a684a9a412eb9b5171aa4742bd,
-        type: 3}
-      propertyPath: OrthographicSizeLevels.Array.data[6]
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 5505692199800095634, guid: 776f29a684a9a412eb9b5171aa4742bd,
-        type: 3}
-      propertyPath: OrthographicSizeLevels.Array.data[7]
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 5505692199800095634, guid: 776f29a684a9a412eb9b5171aa4742bd,
-        type: 3}
-      propertyPath: DistanceLevels.Array.data[0]
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5505692199800095634, guid: 776f29a684a9a412eb9b5171aa4742bd,
-        type: 3}
-      propertyPath: DistanceLevels.Array.data[1]
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5505692199800095634, guid: 776f29a684a9a412eb9b5171aa4742bd,
-        type: 3}
-      propertyPath: DistanceLevels.Array.data[2]
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 5505692199800095634, guid: 776f29a684a9a412eb9b5171aa4742bd,
-        type: 3}
-      propertyPath: DistanceLevels.Array.data[3]
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 5505692199800095634, guid: 776f29a684a9a412eb9b5171aa4742bd,
-        type: 3}
-      propertyPath: DistanceLevels.Array.data[4]
-      value: 16
-      objectReference: {fileID: 0}
-    - target: {fileID: 5505692199800095634, guid: 776f29a684a9a412eb9b5171aa4742bd,
-        type: 3}
-      propertyPath: DistanceLevels.Array.data[5]
+      propertyPath: OrthographicSizeLevels.Array.data[8]
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 5505692199800095634, guid: 776f29a684a9a412eb9b5171aa4742bd,
         type: 3}
-      propertyPath: DistanceLevels.Array.data[6]
-      value: 30
+      propertyPath: InGameUISizeLevels.Array.data[8]
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 5505692199800095634, guid: 776f29a684a9a412eb9b5171aa4742bd,
         type: 3}
-      propertyPath: DistanceLevels.Array.data[7]
-      value: 50
+      propertyPath: DistanceLevels.Array.data[9]
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5505692199800095634, guid: 776f29a684a9a412eb9b5171aa4742bd,
         type: 3}
-      propertyPath: TargetConfigData.FOV
-      value: 15
+      propertyPath: DistanceLevels_ScaleForBattleUI.Array.data[9]
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5505692199800095634, guid: 776f29a684a9a412eb9b5171aa4742bd,
         type: 3}
-      propertyPath: CurrentConfigData.FOV
-      value: 15
+      propertyPath: OrthographicSizeLevels.Array.data[9]
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5505692199800095634, guid: 776f29a684a9a412eb9b5171aa4742bd,
+        type: 3}
+      propertyPath: InGameUISizeLevels.Array.data[9]
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 5980882138566427480, guid: 776f29a684a9a412eb9b5171aa4742bd,
         type: 3}
@@ -463,6 +389,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GameManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 6456424627518213110, guid: 776f29a684a9a412eb9b5171aa4742bd,
+        type: 3}
+      propertyPath: m_BlockingMask.m_Bits
+      value: 1847
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 776f29a684a9a412eb9b5171aa4742bd, type: 3}

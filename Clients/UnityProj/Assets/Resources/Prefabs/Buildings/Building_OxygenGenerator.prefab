@@ -28,8 +28,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1260915280276633232, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
         type: 3}
+      propertyPath: BuildingInfo.requireBuildingCoverList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1260915280276633232, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+        type: 3}
       propertyPath: BuildingInfo.buildingKey
-      value: OxygenGenerator
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1260915280276633232, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
         type: 3}
@@ -71,6 +76,61 @@ PrefabInstance:
       propertyPath: BuildingInfo.itemSprite
       value: 
       objectReference: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 1260915280276633232, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+        type: 3}
+      propertyPath: BuildingInfo.requireBuildingCover
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1260915280276633232, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+        type: 3}
+      propertyPath: BuildingInfo.forbidBuildingCover
+      value: 876
+      objectReference: {fileID: 0}
+    - target: {fileID: 1260915280276633232, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+        type: 3}
+      propertyPath: BuildingInfo.provideBuildingCoverByOccupation
+      value: 16384
+      objectReference: {fileID: 0}
+    - target: {fileID: 1260915280276633232, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+        type: 3}
+      propertyPath: BuildingInfo.provideBuildingCoverInnerRange
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1260915280276633232, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+        type: 3}
+      propertyPath: BuildingInfo.provideBuildingCoverInnerRange_Radius
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1260915280276633232, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+        type: 3}
+      propertyPath: BuildingInfo.requireBuildingCoverList.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1260915280276633232, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+        type: 3}
+      propertyPath: BuildingInfo.requireBuildingCoverList.Array.data[0].Mask_Part1
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1260915280276633232, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+        type: 3}
+      propertyPath: BuildingInfo.forbidBuildingCover.Mask_Part1
+      value: 123464
+      objectReference: {fileID: 0}
+    - target: {fileID: 1260915280276633232, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+        type: 3}
+      propertyPath: BuildingInfo.provideBuildingCoverByOccupation.Mask_Part1
+      value: 16384
+      objectReference: {fileID: 0}
+    - target: {fileID: 1260915280276633232, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+        type: 3}
+      propertyPath: BuildingInfo.provideBuildingCoverOuterRange.Mask_Part1
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1260915280276633232, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+        type: 3}
+      propertyPath: BuildingInfo.provideBuildingCoverOuterRange_Radius
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6616741039188916417, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
         type: 3}
       propertyPath: buildingGrids.Array.size

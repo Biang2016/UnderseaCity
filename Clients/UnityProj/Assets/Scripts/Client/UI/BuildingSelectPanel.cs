@@ -17,7 +17,7 @@ public class BuildingSelectPanel : BaseUIPanel
 
     public void Clear()
     {
-        foreach (KeyValuePair<string, BuildingButton> kv in BuildingButtonDict)
+        foreach (KeyValuePair<BuildingKey, BuildingButton> kv in BuildingButtonDict)
         {
             kv.Value.PoolRecycle();
         }
@@ -27,7 +27,7 @@ public class BuildingSelectPanel : BaseUIPanel
 
     public Transform ButtonContainer;
 
-    private Dictionary<string, BuildingButton> BuildingButtonDict = new Dictionary<string, BuildingButton>();
+    private Dictionary<BuildingKey, BuildingButton> BuildingButtonDict = new Dictionary<BuildingKey, BuildingButton>();
 
     public void Init(List<Building> buildingList)
     {
@@ -39,19 +39,19 @@ public class BuildingSelectPanel : BaseUIPanel
         }
     }
 
-    public void ClearSelectButton()
+    public void OnResourcesChanged(int budget, int oxygen)
     {
-        foreach (KeyValuePair<string, BuildingButton> kv in BuildingButtonDict)
+        foreach (KeyValuePair<BuildingKey, BuildingButton> kv in BuildingButtonDict)
         {
-            kv.Value.transform.localScale = Vector3.one;
+            kv.Value.Button.interactable = kv.Value.BuildingInfo.BudgetCost <= budget && kv.Value.BuildingInfo.OxygenCost <= oxygen;
         }
     }
 
-    public void SelectButton(string buildingKey)
+    public void SelectButton(BuildingKey buildingKey)
     {
-        foreach (KeyValuePair<string, BuildingButton> kv in BuildingButtonDict)
+        foreach (KeyValuePair<BuildingKey, BuildingButton> kv in BuildingButtonDict)
         {
-            kv.Value.transform.localScale = kv.Key.Equals(buildingKey) ? 1.2f * Vector3.one : Vector3.one;
+            kv.Value.transform.localScale = kv.Key == buildingKey ? 1.2f * Vector3.one : Vector3.one;
         }
     }
 }

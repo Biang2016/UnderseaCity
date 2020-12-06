@@ -1,0 +1,420 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &1048897456470988762
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 363456186800578150}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 6a61b8b5543d1384da09ecc68bc68398,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.001986721
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6a61b8b5543d1384da09ecc68bc68398,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.15075609
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6a61b8b5543d1384da09ecc68bc68398,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.00053188205
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6a61b8b5543d1384da09ecc68bc68398,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -6.123234e-17
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6a61b8b5543d1384da09ecc68bc68398,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6a61b8b5543d1384da09ecc68bc68398,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 6.123234e-17
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6a61b8b5543d1384da09ecc68bc68398,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -3.7493994e-33
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6a61b8b5543d1384da09ecc68bc68398,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6a61b8b5543d1384da09ecc68bc68398,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6a61b8b5543d1384da09ecc68bc68398,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6a61b8b5543d1384da09ecc68bc68398,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 6a61b8b5543d1384da09ecc68bc68398,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f4b96c87d0c1bbb409e0092e761b92a7, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 6a61b8b5543d1384da09ecc68bc68398,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7243b6b6f9690ec45804ee957f8f20a0, type: 2}
+    - target: {fileID: 919132149155446097, guid: 6a61b8b5543d1384da09ecc68bc68398,
+        type: 3}
+      propertyPath: m_Name
+      value: UnderseaApartment_Lower
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6a61b8b5543d1384da09ecc68bc68398, type: 3}
+--- !u!1001 &3637403508903647563
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1871999190320570254}
+    m_Modifications:
+    - target: {fileID: 5309277208809338386, guid: 6505c5b1f033442c4bf82c6641ecccf0,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5309277208809338386, guid: 6505c5b1f033442c4bf82c6641ecccf0,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5309277208809338386, guid: 6505c5b1f033442c4bf82c6641ecccf0,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5309277208809338386, guid: 6505c5b1f033442c4bf82c6641ecccf0,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5309277208809338386, guid: 6505c5b1f033442c4bf82c6641ecccf0,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5309277208809338386, guid: 6505c5b1f033442c4bf82c6641ecccf0,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5309277208809338386, guid: 6505c5b1f033442c4bf82c6641ecccf0,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5309277208809338386, guid: 6505c5b1f033442c4bf82c6641ecccf0,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5309277208809338386, guid: 6505c5b1f033442c4bf82c6641ecccf0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5309277208809338386, guid: 6505c5b1f033442c4bf82c6641ecccf0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5309277208809338386, guid: 6505c5b1f033442c4bf82c6641ecccf0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5458413493394818293, guid: 6505c5b1f033442c4bf82c6641ecccf0,
+        type: 3}
+      propertyPath: m_Name
+      value: Grid
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6505c5b1f033442c4bf82c6641ecccf0, type: 3}
+--- !u!114 &2651557179594888423 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1636669293193448876, guid: 6505c5b1f033442c4bf82c6641ecccf0,
+    type: 3}
+  m_PrefabInstance: {fileID: 3637403508903647563}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27dd35078710da048a26f05e13c6684c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3208778631991186738 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2233073009189768313, guid: 6505c5b1f033442c4bf82c6641ecccf0,
+    type: 3}
+  m_PrefabInstance: {fileID: 3637403508903647563}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3845e0053c7c2da4597c82f2ac21e3ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1001 &5578298045802029798
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1260915280276633232, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+        type: 3}
+      propertyPath: BuildingInfo.BuildingOccupiedGridPositionList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1260915280276633232, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+        type: 3}
+      propertyPath: BuildingInfo.requireBuildingCoverList.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1260915280276633232, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+        type: 3}
+      propertyPath: BuildingInfo.buildingKey
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1260915280276633232, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+        type: 3}
+      propertyPath: BuildingInfo.englishName
+      value: Undersea Apartment (Basic)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1260915280276633232, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+        type: 3}
+      propertyPath: BuildingInfo.chineseName
+      value: "\u6D77\u5E95\u516C\u5BD3(\u5C0F)"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1260915280276633232, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+        type: 3}
+      propertyPath: BuildingInfo.itemBasicInfo
+      value: Undersea Apartment provides living room for people
+      objectReference: {fileID: 0}
+    - target: {fileID: 1260915280276633232, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+        type: 3}
+      propertyPath: BuildingInfo.itemDetailedInfo
+      value: 11111
+      objectReference: {fileID: 0}
+    - target: {fileID: 1260915280276633232, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+        type: 3}
+      propertyPath: BuildingInfo.color.g
+      value: 0.6412373
+      objectReference: {fileID: 0}
+    - target: {fileID: 1260915280276633232, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+        type: 3}
+      propertyPath: BuildingInfo.color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1260915280276633232, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+        type: 3}
+      propertyPath: BuildingInfo.color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1260915280276633232, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+        type: 3}
+      propertyPath: BuildingInfo.itemSprite
+      value: 
+      objectReference: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 1260915280276633232, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+        type: 3}
+      propertyPath: BuildingInfo.color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1260915280276633232, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+        type: 3}
+      propertyPath: BuildingInfo.BuildingOccupiedGridPositionList.Array.data[1].x
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1260915280276633232, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+        type: 3}
+      propertyPath: BuildingInfo.requireBuildingCover
+      value: 292
+      objectReference: {fileID: 0}
+    - target: {fileID: 1260915280276633232, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+        type: 3}
+      propertyPath: BuildingInfo.provideBuildingCoverByOccupation
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1260915280276633232, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+        type: 3}
+      propertyPath: BuildingInfo.provideBuildingCoverInnerRange
+      value: 2048
+      objectReference: {fileID: 0}
+    - target: {fileID: 1260915280276633232, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+        type: 3}
+      propertyPath: BuildingInfo.provideBuildingCoverInnerRange_Radius
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1260915280276633232, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+        type: 3}
+      propertyPath: BuildingInfo.requireBuildingCoverList.Array.data[0]
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1260915280276633232, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+        type: 3}
+      propertyPath: BuildingInfo.requireBuildingCoverList.Array.data[1]
+      value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 1260915280276633232, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+        type: 3}
+      propertyPath: BuildingInfo.requireBuildingCoverList.Array.data[2]
+      value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 1260915280276633232, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+        type: 3}
+      propertyPath: BuildingInfo.requireBuildingCoverList.Array.data[0].Mask_Part1
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1260915280276633232, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+        type: 3}
+      propertyPath: BuildingInfo.forbidBuildingCover.Mask_Part1
+      value: 123464
+      objectReference: {fileID: 0}
+    - target: {fileID: 1260915280276633232, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+        type: 3}
+      propertyPath: BuildingInfo.provideBuildingCoverOuterRange.Mask_Part1
+      value: 2048
+      objectReference: {fileID: 0}
+    - target: {fileID: 1260915280276633232, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+        type: 3}
+      propertyPath: BuildingInfo.provideBuildingCoverOuterRange_Radius
+      value: 1.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1260915280276633232, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+        type: 3}
+      propertyPath: BuildingInfo.provideBuildingCoverByOccupation.Mask_Part1
+      value: 32768
+      objectReference: {fileID: 0}
+    - target: {fileID: 1260915280276633232, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+        type: 3}
+      propertyPath: BuildingInfo.requireBuildingCoverList.Array.data[1].Mask_Part1
+      value: 34
+      objectReference: {fileID: 0}
+    - target: {fileID: 1260915280276633232, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+        type: 3}
+      propertyPath: BuildingInfo.requireBuildingCoverList.Array.data[2].Mask_Part1
+      value: 258
+      objectReference: {fileID: 0}
+    - target: {fileID: 6616741039188916417, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+        type: 3}
+      propertyPath: buildingGrids.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6616741039188916417, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+        type: 3}
+      propertyPath: HitBoxes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6616741039188916417, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+        type: 3}
+      propertyPath: buildingGrids.Array.data[0]
+      value: 
+      objectReference: {fileID: 2651557179594888423}
+    - target: {fileID: 6616741039188916417, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+        type: 3}
+      propertyPath: buildingGrids.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6616741039188916417, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+        type: 3}
+      propertyPath: HitBoxes.Array.data[0]
+      value: 
+      objectReference: {fileID: 3208778631991186738}
+    - target: {fileID: 6616741039188916417, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+        type: 3}
+      propertyPath: HitBoxes.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7059374381596298502, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+        type: 3}
+      propertyPath: m_Name
+      value: Building_UnderseaApartment_Lower
+      objectReference: {fileID: 0}
+    - target: {fileID: 8922207720215023247, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8922207720215023247, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8922207720215023247, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8922207720215023247, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8922207720215023247, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8922207720215023247, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8922207720215023247, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8922207720215023247, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8922207720215023247, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8922207720215023247, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8922207720215023247, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6eb6cba3e37f3c84c99421242dfd3f99, type: 3}
+--- !u!4 &1871999190320570254 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6093570252760251752, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+    type: 3}
+  m_PrefabInstance: {fileID: 5578298045802029798}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &363456186800578150 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5215548789164850304, guid: 6eb6cba3e37f3c84c99421242dfd3f99,
+    type: 3}
+  m_PrefabInstance: {fileID: 5578298045802029798}
+  m_PrefabAsset: {fileID: 0}

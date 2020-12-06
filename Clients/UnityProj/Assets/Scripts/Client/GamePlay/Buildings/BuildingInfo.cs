@@ -8,7 +8,18 @@ using UnityEngine;
 [Serializable]
 public class BuildingInfo : IClone<BuildingInfo>, IInventoryItemContentInfo
 {
-    public string buildingKey;
+    public BuildingKey buildingKey;
+    public List<BuildingCoverMaskGroup> requireBuildingCoverList = new List<BuildingCoverMaskGroup>();
+    public BuildingCoverMaskGroup forbidBuildingCover;
+    public BuildingCoverMaskGroup provideBuildingCoverByOccupation;
+    public BuildingCoverMaskGroup provideBuildingCoverInnerRange;
+    public float provideBuildingCoverInnerRange_Radius;
+    public BuildingCoverMaskGroup provideBuildingCoverOuterRange;
+    public float provideBuildingCoverOuterRange_Radius;
+
+    public int BudgetCost = 100;
+    public int OxygenCost = 100;
+
     public List<GridPos> BuildingOccupiedGridPositionList = new List<GridPos>();
     public BuildingType buildingType;
     public string englishName;
@@ -22,6 +33,17 @@ public class BuildingInfo : IClone<BuildingInfo>, IInventoryItemContentInfo
     {
         BuildingInfo newBuildingInfo = new BuildingInfo();
         newBuildingInfo.buildingKey = buildingKey;
+        newBuildingInfo.requireBuildingCoverList = requireBuildingCoverList.Clone();
+        newBuildingInfo.forbidBuildingCover = forbidBuildingCover;
+        newBuildingInfo.provideBuildingCoverByOccupation = provideBuildingCoverByOccupation;
+        newBuildingInfo.provideBuildingCoverInnerRange = provideBuildingCoverInnerRange;
+        newBuildingInfo.provideBuildingCoverInnerRange_Radius = provideBuildingCoverInnerRange_Radius;
+        newBuildingInfo.provideBuildingCoverOuterRange = provideBuildingCoverOuterRange;
+        newBuildingInfo.provideBuildingCoverOuterRange_Radius = provideBuildingCoverOuterRange_Radius;
+
+        newBuildingInfo.BudgetCost = BudgetCost;
+        newBuildingInfo.OxygenCost = OxygenCost;
+
         newBuildingInfo.BuildingOccupiedGridPositionList = BuildingOccupiedGridPositionList.Clone();
         newBuildingInfo.buildingType = buildingType;
         newBuildingInfo.englishName = englishName;

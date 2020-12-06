@@ -214,6 +214,20 @@ public class FieldCamera : MonoBehaviour
     private void Update()
     {
         UpdateFOVLevel();
+
+        Vector3 forwardPlaner = CamRoot.forward;
+        forwardPlaner.y = 0;
+        Quaternion rot = Quaternion.FromToRotation(Vector3.right, forwardPlaner);
+        Quaternion rot45 = Quaternion.Euler(0, 45, 0);
+        Vector3 movement = Vector3.zero;
+        float speedFactor = DistanceLevels[Distance_Level] / DistanceLevels[0];
+        float finalPanSpeed = panSpeed * speedFactor;
+        if (Input.GetKey(KeyCode.W)) movement += new Vector3(1, 0, 1);
+        if (Input.GetKey(KeyCode.S)) movement += new Vector3(-1, 0, -1);
+        if (Input.GetKey(KeyCode.A)) movement += new Vector3(-1, 0, 1);
+        if (Input.GetKey(KeyCode.D)) movement += new Vector3(1, 0, -1);
+        movement = rot * rot45 * movement.normalized * finalPanSpeed;
+        TargetOffset += movement;
     }
 
     private void LateUpdate()
@@ -343,11 +357,6 @@ public class FieldCamera : MonoBehaviour
             {
                 Distance_Level++;
             }
-
-            if (Input.GetKey(KeyCode.W)) TargetOffset += new Vector3(panSpeed, 0, panSpeed);
-            if (Input.GetKey(KeyCode.S)) TargetOffset += new Vector3(-panSpeed, 0, -panSpeed);
-            if (Input.GetKey(KeyCode.A)) TargetOffset += new Vector3(-panSpeed, 0, panSpeed);
-            if (Input.GetKey(KeyCode.D)) TargetOffset += new Vector3(panSpeed, 0, -panSpeed);
         }
     }
 
