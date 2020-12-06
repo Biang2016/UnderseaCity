@@ -1,12 +1,21 @@
-﻿using BiangStudio.GameDataFormat.Grid;
+﻿using System;
+using BiangStudio.GameDataFormat.Grid;
 using BiangStudio.AdvancedInventory;
 using BiangStudio.DragHover;
+using UnityEngine;
 
 public class CityInventory : Inventory
 {
+    public City City;
+    public DragProcessor DragProcessor;
+
+    private InstantiatePrefabDelegate InstantiateCityInventoryGridHandler;
+    private InstantiatePrefabDelegate InstantiateCityInventoryVirtualOccupationQuadHandler;
+
     public CityInventory(
         string inventoryName,
         DragAreaIndicator dragAreaIndicator,
+        DragProcessor dragProcessor,
         int gridSize,
         int rows,
         int columns,
@@ -15,14 +24,63 @@ public class CityInventory : Inventory
         bool unlockedPartialGrids,
         int unlockedGridCount,
         bool dragOutDrop,
-        KeyDownDelegate rotateItemKeyDownHandler
+        KeyDownDelegate rotateItemKeyDownHandler,
+        InstantiatePrefabDelegate instantiateCityInventoryGridHandler,
+        InstantiatePrefabDelegate instantiateCityInventoryVirtualOccupationQuadHandler
     ) : base(inventoryName, dragAreaIndicator, gridSize, rows, columns, x_Mirror, z_Mirror, unlockedPartialGrids, unlockedGridCount, dragOutDrop,
         rotateItemKeyDownHandler,
-        (gridPos) => new GridPosR(gridPos.x + ConfigManager.EDIT_AREA_HALF_SIZE, gridPos.z + ConfigManager.EDIT_AREA_HALF_SIZE, gridPos.orientation),
-        (gp_matrix) => new GridPosR(gp_matrix.x - ConfigManager.EDIT_AREA_HALF_SIZE, gp_matrix.z - ConfigManager.EDIT_AREA_HALF_SIZE, gp_matrix.orientation),
+        (gridPos) => new GridPosR(gridPos.x + columns / 2, gridPos.z + rows / 2, gridPos.orientation),
+        (gp_matrix) => new GridPosR(gp_matrix.x - columns / 2, gp_matrix.z - rows / 2, gp_matrix.orientation),
         (gridPos) => new GridPos(gridPos.x, gridPos.z),
         (gp_matrix) => new GridPos(gp_matrix.x, gp_matrix.z)
     )
     {
+        DragProcessor = dragProcessor;
+        InstantiateCityInventoryGridHandler = instantiateCityInventoryGridHandler;
+        InstantiateCityInventoryVirtualOccupationQuadHandler = instantiateCityInventoryVirtualOccupationQuadHandler;
+    }
+
+    public CityInventoryGrid CreateCityInventoryGrid(Transform transform)
+    {
+        if (InstantiateCityInventoryGridHandler != null)
+        {
+            MonoBehaviour mono = InstantiateCityInventoryGridHandler?.Invoke(transform);
+            if (mono != null)
+            {
+                try
+                {
+                    CityInventoryGrid res = (CityInventoryGrid) mono;
+                    return res;
+                }
+                catch (Exception e)
+                {
+                    LogError(e.ToString());
+                }
+            }
+        }
+
+        return null;
+    }
+
+    public CityInventoryVirtualOccupationQuad CreateCityInventoryVirtualOccupationQuad(Transform transform)
+    {
+        if (InstantiateCityInventoryVirtualOccupationQuadHandler != null)
+        {
+            MonoBehaviour mono = InstantiateCityInventoryVirtualOccupationQuadHandler?.Invoke(transform);
+            if (mono != null)
+            {
+                try
+                {
+                    CityInventoryVirtualOccupationQuad res = (CityInventoryVirtualOccupationQuad) mono;
+                    return res;
+                }
+                catch (Exception e)
+                {
+                    LogError(e.ToString());
+                }
+            }
+        }
+
+        return null;
     }
 }

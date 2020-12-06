@@ -1,146 +1,73 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
-using BiangStudio.GamePlay;
-using BiangStudio.ObjectPool;
+using BiangStudio.AdvancedInventory;
+using BiangStudio.GameDataFormat.Grid;
 using UnityEngine.Events;
 
-public class City : PoolObject
+public class City : MonoBehaviour
 {
-    public UnityAction<City> OnRemoveCitySuc;
+    [SerializeField]
+    private MeshRenderer MeshRenderer_Range;
 
     [SerializeField]
-    private Transform BuildingContainer;
+    private MeshRenderer MeshRenderer_Grid;
 
-    public CityInfo CityInfo;
+    [HideInInspector]
+    public CityInventory CityInventory;
+
+    public Transform BuildingContainer;
+
+    public CityInventoryVirtualOccupationQuadRoot CityInventoryVirtualOccupationQuadRoot;
 
     public CityEditAreaIndicator CityEditAreaIndicator;
+
+    public Transform CityInventoryGridContainer;
+
+    private CityInventoryGrid[,] cityInventoryGirdMatrix; // column, row
+
+    public Dictionary<string, Building> BuildingPrefabDict = new Dictionary<string, Building>();
+    public Dictionary<string, BuildingInfo> BuildingInfoDict = new Dictionary<string, BuildingInfo>();
+
     public SortedDictionary<uint, Building> BuildingDict = new SortedDictionary<uint, Building>();
 
-    public override void OnRecycled()
+    public UnityAction<Building> OnHoverBuilding;
+    public UnityAction<Building> OnHoverEndBuilding;
+
+    public void Init(CityInventory cityInventory, List<Building> buildingPrefabs, UnityAction<Building> onHoverBuilding = null, UnityAction<Building> onHoverEndBuilding = null)
     {
-        Clean();
-        if (CityEditAreaIndicator != null)
+        CityInventory = cityInventory;
+
+        foreach (Building buildingPrefab in buildingPrefabs)
         {
-            DestroyImmediate(CityEditAreaIndicator);
-            CityEditAreaIndicator = null;
+            BuildingPrefabDict.Add(buildingPrefab.BuildingInfo.buildingKey, buildingPrefab);
+            BuildingInfoDict.Add(buildingPrefab.BuildingInfo.buildingKey, buildingPrefab.BuildingInfo.Clone());
         }
 
-        base.OnRecycled();
-    }
+        OnHoverBuilding = onHoverBuilding;
+        OnHoverEndBuilding = onHoverEndBuilding;
+        CityInventory.RefreshInventoryGrids();
+        CityInventory.RefreshConflictAndIsolation();
 
-    public void Initialize(CityInfo cityInfo)
-    {
-        Clean();
-
-        CityInfo = cityInfo;
-
-        CityInfo.OnAddBuildingInfoSuc = (bi, gp_matrix) => AddBuilding(bi);
-        CityInfo.OnRemoveCityInfoSuc += (bi) =>
+        CityEditAreaIndicator.Init(CityInventory);
+        cityInventoryGirdMatrix = new CityInventoryGrid[cityInventory.Columns, cityInventory.Rows];
+        for (int col = 0; col < cityInventory.Columns; col++)
         {
-            OnRemoveCitySuc?.Invoke(this);
-            PoolRecycle();
-        };
-
-        CityInfo.CityInventory = new CityInventory(
-            "City",
-            CityEditAreaIndicator,
-            ConfigManager.GRID_SIZE,
-            ConfigManager.EDIT_AREA_FULL_SIZE,
-            ConfigManager.EDIT_AREA_FULL_SIZE,
-            false,
-            false,
-            false,
-            0,
-            false,
-            () => Input.GetKeyDown(KeyCode.R));
-        CityInfo.CityInventory.OnRemoveItemSucAction = (item) => { ((BuildingInfo) item.ItemContentInfo).RemoveBuildingInfo(); };
-        CityInfo.CityInventory.RefreshInventoryGrids();
-        CityInfo.OnInstantiated?.Invoke(); // 将已经积攒的未实例化的组件实例化
-        CityInfo.OnInstantiated = null;
-        CityInfo.CityInventory.RefreshConflictAndIsolation();
-
-        // CityEditorArea
-        GameObject cea = PrefabManager.Instance.GetPrefab(nameof(CityEditAreaIndicator));
-        GameObject ceaGO = Instantiate(cea);
-        ceaGO.transform.parent = transform;
-        ceaGO.transform.localPosition = new Vector3(0, -0.5f, 0);
-        CityEditAreaIndicator = ceaGO.GetComponent<CityEditAreaIndicator>();
-        CityEditAreaIndicator.Init(CityInfo);
-
-        foreach (KeyValuePair<uint, BuildingInfo> kv in CityInfo.BuildingInfoDict) // 将其它的建筑实例化
-        {
-            if (BuildingDict.ContainsKey(kv.Key)) continue;
-            AddBuilding(kv.Value);
+            for (int row = 0; row < cityInventory.Rows; row++)
+            {
+                CityInventoryGrid grid = cityInventory.CreateCityInventoryGrid(CityInventoryGridContainer);
+                grid.transform.localPosition = new Vector3((col - cityInventory.Columns / 2) * cityInventory.GridSize, 0, (row - cityInventory.Rows / 2) * cityInventory.GridSize);
+                grid.transform.localRotation = Quaternion.Euler(90, 0, 0);
+                grid.Init(new GridPos(col, row));
+                cityInventoryGirdMatrix[col, row] = grid;
+            }
         }
 
+        CityInventory.OnAddItemSucAction = OnAddBuildingSuc;
+        CityInventory.OnRemoveItemSucAction = OnRemoveBuildingSuc;
         GridShown = false;
     }
 
-    public void Clean()
-    {
-        CityEditAreaIndicator?.Clear();
-        foreach (KeyValuePair<uint, Building> kv in BuildingDict)
-        {
-            kv.Value.PoolRecycle();
-        }
-
-        BuildingDict.Clear();
-        OnRemoveCitySuc = null;
-        CityInfo = null;
-    }
-
     protected void Update()
-    {
-        if (!IsRecycled)
-        {
-            Update_Building();
-        }
-    }
-
-    void FixedUpdate()
-    {
-        if (!IsRecycled)
-        {
-            FixedUpdate_Building();
-        }
-    }
-
-    void LateUpdate()
-    {
-        if (!IsRecycled)
-        {
-        }
-    }
-
-    public void SetShown(bool shown)
-    {
-        foreach (KeyValuePair<uint, Building> kv in BuildingDict)
-        {
-            kv.Value.SetShown(shown);
-        }
-    }
-
-    private Building AddBuilding(BuildingInfo bi)
-    {
-        Building building = Building.BaseInitialize(bi, this);
-        building.OnRemoveBuildingSuc = RemoveBuilding;
-        BuildingDict.Add(bi.GUID, building);
-
-        building.transform.SetParent(BuildingContainer);
-        building.BuildingGridRoot.SetGridShown(GridShown);
-        building.BuildingGridRoot.ResetAllGridConflict();
-        building.BuildingGridRoot.SetIsolatedIndicatorShown(false);
-        return building;
-    }
-
-    private void RemoveBuilding(Building building)
-    {
-        building.OnRemoveBuildingSuc = null;
-        BuildingDict.Remove(building.BuildingInfo.GUID);
-    }
-
-    void Update_Building()
     {
         if (Input.GetKeyDown(KeyCode.T))
         {
@@ -148,8 +75,24 @@ public class City : PoolObject
         }
     }
 
-    void FixedUpdate_Building()
+    public Building GetBuilding(uint guid)
     {
+        BuildingDict.TryGetValue(guid, out Building building);
+        return building;
+    }
+
+    private void OnAddBuildingSuc(InventoryItem ii)
+    {
+        Building building = Instantiate(BuildingPrefabDict[((BuildingInfo) ii.ItemContentInfo).buildingKey], BuildingContainer);
+        building.Initialize(this, ii);
+        BuildingDict.Add(ii.GUID, building);
+    }
+
+    private void OnRemoveBuildingSuc(InventoryItem ii)
+    {
+        Building building = BuildingDict[ii.GUID];
+        Destroy(building.gameObject);
+        BuildingDict.Remove(ii.GUID);
     }
 
     private bool _gridShown = true;
@@ -169,5 +112,11 @@ public class City : PoolObject
 
             _gridShown = value;
         }
+    }
+
+    public void SetCityMapShown(bool shown)
+    {
+        MeshRenderer_Range.enabled = shown;
+        MeshRenderer_Grid.enabled = shown;
     }
 }

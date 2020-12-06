@@ -134,43 +134,15 @@ public class ConfigManager : TSingletonBaseManager<ConfigManager>
     }
 
     public static int GRID_SIZE = 1;
-    public static int EDIT_AREA_HALF_SIZE = 9;
-    public static int EDIT_AREA_FULL_SIZE => EDIT_AREA_HALF_SIZE * 2 + 1;
-    public static bool ShowMechaEditorAreaGridPosText = true;
-
-    #region Building占位配置
-
-    public static string BuildingOriginalOccupiedGridInfoJsonFilePath => $"{BuildingOriginalOccupiedGridInfoJsonFileFolder}/BuildingOriginalOccupiedGridInfo.json";
-    public static string BuildingOriginalOccupiedGridInfoJsonFileFolder = Application.streamingAssetsPath + "/Configs/BuildingPrefabConfigs";
-    public static Dictionary<string, BuildingOriginalOccupiedGridInfo> BuildingOriginalOccupiedGridInfoDict = new Dictionary<string, BuildingOriginalOccupiedGridInfo>();
-
-    private void LoadBuildingOccupiedGridPosDict()
-    {
-        StreamReader sr = new StreamReader(BuildingOriginalOccupiedGridInfoJsonFilePath);
-        string content = sr.ReadToEnd();
-        sr.Close();
-        BuildingOriginalOccupiedGridInfoDict = JsonConvert.DeserializeObject<Dictionary<string, BuildingOriginalOccupiedGridInfo>>(content);
-    }
-
-    #endregion
-
-    public static string AllBuildingConfigPath_Relative = "Configs/BuildingConfigs/AllBuildingConfig.asset";
-
-    public static string AllBuildingConfigPath_Build = Application.streamingAssetsPath + "/" + AllBuildingConfigPath_Relative;
 
     [ShowInInspector]
     [LabelText("FX类型表")]
     public static readonly TypeDefineConfig<FX> FXTypeDefineDict = new TypeDefineConfig<FX>("FX", "/Resources/Prefabs/FX", true);
 
-    [ShowInInspector]
-    [LabelText("建筑配置表")]
-    public static readonly Dictionary<string, BuildingConfig> BuildingConfigDict = new Dictionary<string, BuildingConfig>();
-
     public static string DesignRoot = "/Designs/";
 
     public override void Awake()
     {
-        LoadBuildingOccupiedGridPosDict();
         LoadAllConfigs();
     }
 
@@ -184,27 +156,9 @@ public class ConfigManager : TSingletonBaseManager<ConfigManager>
 
         DataFormat dataFormat = DataFormat.Binary;
         FXTypeDefineDict.ExportTypeNames();
-        Building.SerializeBuildingOccupiedPositions();
-        ExportBuildingConfig(dataFormat);
-        LoadBuildingConfig(dataFormat);
         AssetDatabase.Refresh();
         LoadAllConfigs();
     }
-    private static void ExportBuildingConfig(DataFormat dataFormat)
-    {
-        string path = AllBuildingConfigPath_Build;
-        FileInfo fi = new FileInfo(path);
-        if (fi.Exists) fi.Delete();
-
-        FileInfo configFileInfo = new FileInfo(Application.dataPath + DesignRoot + AllBuildingConfigPath_Relative);
-        string relativePath = CommonUtils.ConvertAbsolutePathToProjectPath(configFileInfo.FullName);
-        Object configObj = AssetDatabase.LoadAssetAtPath<Object>(relativePath);
-        AllBuildingConfigSSO configSSO = (AllBuildingConfigSSO)configObj;
-        configSSO.RefreshConfigList();
-        byte[] bytes = SerializationUtility.SerializeValue(configSSO.BuildingConfigList, dataFormat);
-        File.WriteAllBytes(path, bytes);
-    }
-
 #endif
 
     #endregion
@@ -221,35 +175,7 @@ public class ConfigManager : TSingletonBaseManager<ConfigManager>
         if (IsLoaded) return;
         DataFormat dataFormat = DataFormat.Binary;
         FXTypeDefineDict.LoadTypeNames();
-        LoadBuildingConfig(dataFormat);
         IsLoaded = true;
-    }
-
-    private static void LoadBuildingConfig(DataFormat dataFormat)
-    {
-        BuildingConfigDict.Clear();
-
-        FileInfo fi = new FileInfo(AllBuildingConfigPath_Build);
-        if (fi.Exists)
-        {
-            byte[] bytes = File.ReadAllBytes(fi.FullName);
-            List<BuildingConfig> configs = SerializationUtility.DeserializeValue<List<BuildingConfig>>(bytes, dataFormat);
-            foreach (BuildingConfig config in configs)
-            {
-                if (BuildingConfigDict.ContainsKey(config.BuildingKey))
-                {
-                    Debug.LogError($"建筑配置重名:{config.BuildingKey}");
-                }
-                else
-                {
-                    BuildingConfigDict.Add(config.BuildingKey, config);
-                }
-            }
-        }
-        else
-        {
-            Debug.LogError("建筑配置表不存在");
-        }
     }
 
     #endregion

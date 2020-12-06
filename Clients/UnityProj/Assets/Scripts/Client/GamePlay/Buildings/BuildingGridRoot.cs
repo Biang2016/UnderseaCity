@@ -1,27 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using BiangStudio.GameDataFormat.Grid;
 using UnityEngine;
 
-[ExecuteInEditMode]
 public class BuildingGridRoot : ForbidLocalMoveRoot
 {
     internal Building Building;
     public List<BuildingGrid> buildingGrids = new List<BuildingGrid>();
-
-    [NonSerialized]
     public List<BuildingHitBox> HitBoxes = new List<BuildingHitBox>();
 
     void Awake()
     {
-        buildingGrids = GetComponentsInChildren<BuildingGrid>().ToList();
-        Building = GetComponentInParent<Building>();
-        HitBoxes = GetComponentsInChildren<BuildingHitBox>().ToList();
-        foreach (BuildingHitBox hitBox in HitBoxes)
-        {
-            hitBox.LocalGridPos = GridPos.GetGridPosByLocalTransXZ(hitBox.transform, ConfigManager.GRID_SIZE);
-        }
+        GetOccupiedPositions();
     }
 
     public void SetInUsed(bool inUsed)
@@ -45,15 +35,16 @@ public class BuildingGridRoot : ForbidLocalMoveRoot
         return null;
     }
 
-#if UNITY_EDITOR
-    public void RefreshConfig()
-    {
-        buildingGrids = GetComponentsInChildren<BuildingGrid>().ToList();
-        HitBoxes = GetComponentsInChildren<BuildingHitBox>().ToList();
-    }
-
     public List<GridPos> GetOccupiedPositions()
     {
+        buildingGrids = GetComponentsInChildren<BuildingGrid>().ToList();
+        Building = GetComponentInParent<Building>();
+        HitBoxes = GetComponentsInChildren<BuildingHitBox>().ToList();
+        foreach (BuildingHitBox hitBox in HitBoxes)
+        {
+            hitBox.LocalGridPos = GridPos.GetGridPosByLocalTransXZ(hitBox.transform, ConfigManager.GRID_SIZE);
+        }
+
         List<GridPos> res = new List<GridPos>();
         foreach (BuildingGrid bg in buildingGrids)
         {
@@ -62,8 +53,6 @@ public class BuildingGridRoot : ForbidLocalMoveRoot
 
         return res;
     }
-
-#endif
 
     public void SetGridShown(bool shown)
     {

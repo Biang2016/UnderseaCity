@@ -1,180 +1,92 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using BiangStudio;
+﻿using BiangStudio;
 using BiangStudio.DragHover;
 using BiangStudio.GameDataFormat.Grid;
-using BiangStudio.GamePlay;
-using BiangStudio.ObjectPool;
 using BiangStudio.AdvancedInventory;
-using Newtonsoft.Json;
 using Sirenix.OdinInspector;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.Events;
 
-public class Building : PoolObject, IMouseHoverComponent, IDraggable
+public class Building : MonoBehaviour, IMouseHoverComponent, IDraggable
 {
-    [PropertyOrder(-10)]
-    [Title("Data")]
+    public City City = null;
+    internal CityInventory CityInventory;
+    public InventoryItem InventoryItem;
     public BuildingInfo BuildingInfo;
 
-    [ReadOnly]
-    [PropertyOrder(-10)]
-    [HideInEditorMode]
-    [LabelText("父City")]
-    public City City = null;
-
-    [TitleGroup("GameObjectContainers")]
-    [PropertyOrder(-9)]
-    [LabelText("Grid根节点")]
     public BuildingGridRoot BuildingGridRoot;
-
-    [TitleGroup("GameObjectContainers")]
-    [PropertyOrder(-9)]
-    [LabelText("模型根节点")]
     public BuildingModelRoot BuildingModelRoot;
 
-    internal Draggable Draggable;
-
-    internal CityInfo CityInfo => City.CityInfo;
-    internal Inventory Inventory => BuildingInfo.InventoryItem.Inventory;
-    internal InventoryItem InventoryItem => BuildingInfo.InventoryItem;
-    internal UnityAction<Building> OnRemoveBuildingSuc;
-
-    void Awake()
+    public void Initialize(City parentCity, InventoryItem inventoryItem)
     {
-        Draggable = GetComponent<Draggable>();
+        City = parentCity;
+        CityInventory = City.CityInventory;
+        SetInventoryItem(inventoryItem);
+        SetGridPos(InventoryItem.GridPos_World);
+        BuildingGridRoot.SetInUsed(true);
     }
 
-    public override void OnRecycled()
+    [Button("序列化位置信息")]
+    private void SerializeGPOccupation()
     {
-        BuildingGridRoot.SetIsolatedIndicatorShown(true);
-        BuildingGridRoot.SetInUsed(false);
-        BuildingModelRoot.ResetColor();
-        BuildingInfo?.Reset();
-        BuildingInfo = null;
-        City = null;
-        OnRemoveBuildingSuc = null;
-        base.OnRecycled();
+        BuildingInfo.BuildingOccupiedGridPositionList = BuildingGridRoot.GetOccupiedPositions();
     }
 
-    protected virtual void Update()
+    public void SetInventoryItem(InventoryItem inventoryItem)
     {
-        //if (!Application.isPlaying) // 编辑器中不允许调整位置
-        //{
-        //    if (!GetComponentInParent<MechaDesignerHelper>())
-        //    {
-        //        transform.localPosition = Vector3.zero;
-        //        transform.localRotation = Quaternion.identity;
-        //    }
-        //}
+        InventoryItem = inventoryItem;
+        InventoryItem.OnSetGridPosHandler = SetGridPos;
+        InventoryItem.OnIsolatedHandler = OnInventoryItemOnIsolated;
+        InventoryItem.OnConflictedHandler = BuildingGridRoot.SetGridConflicted;
+        InventoryItem.OnResetConflictHandler = BuildingGridRoot.ResetAllGridConflict;
     }
 
-    public static Building BaseInitialize(BuildingInfo buildingInfo, City parentCity)
+    public void Rotate()
     {
-        Building building = GameObjectPoolManager.Instance.BuildingBasePoolDict[buildingInfo.BuildingConfig.BuildingKey]
-            .AllocateGameObject<Building>(LevelManager.Instance.transform);
-        building.Initialize(buildingInfo, parentCity);
-        return building;
+        GridPosR.Orientation newOri = GridPosR.RotateOrientationClockwise90(InventoryItem.GridPos_Matrix.orientation);
+        GridPosR newGPR = new GridPosR(InventoryItem.GridPos_Matrix.x, InventoryItem.GridPos_Matrix.z, newOri);
+        InventoryItem.SetGridPosition(newGPR);
     }
 
-    private void Initialize(BuildingInfo buildingInfo, City parentCity)
+    private void SetGridPos(GridPosR gridPos_World)
     {
-        buildingInfo.OnRemoveBuildingInfoSuc += (mci) =>
+        GridPosR.ApplyGridPosToLocalTrans(gridPos_World, transform, CityInventory.GridSize);
+        CityInventory.RefreshConflictAndIsolation();
+        SetVirtualGridPos(gridPos_World);
+    }
+
+    private void SetVirtualGridPos(GridPosR gridPos_World)
+    {
+        City.CityInventoryVirtualOccupationQuadRoot.Clear();
+        foreach (GridPos gp_matrix in InventoryItem.OccupiedGridPositions_Matrix)
         {
-            OnRemoveBuildingSuc?.Invoke(this);
-            PoolRecycle();
-        };
+            if (!CityInventory.ContainsGP(gp_matrix))
+            {
+                continue;
+            }
 
+            CityInventoryVirtualOccupationQuad quad = CityInventory.CreateCityInventoryVirtualOccupationQuad(City.CityInventoryVirtualOccupationQuadRoot.transform);
+            quad.Init(InventoryItem.Inventory.GridSize, gp_matrix, InventoryItem.Inventory);
+            City.CityInventoryVirtualOccupationQuadRoot.cityInventoryVirtualOccupationQuads.Add(quad);
+        }
+    }
+
+    private void OnInventoryItemOnIsolated(bool shown)
+    {
+        if (shown)
         {
-            buildingInfo.InventoryItem.OnSetGridPosHandler = (gridPos_World) =>
-            {
-                GridPosR.ApplyGridPosToLocalTrans(gridPos_World, transform, ConfigManager.GRID_SIZE);
-                CityInfo?.CityInventory.RefreshConflictAndIsolation();
-            };
-            buildingInfo.InventoryItem.OnIsolatedHandler = (shown) =>
-            {
-                if (shown)
-                {
-                    BuildingModelRoot.SetBuildingBasicEmissionColor(CommonUtils.HTMLColorToColor("#E42835"));
-                }
-                else
-                {
-                    BuildingModelRoot.ResetBuildingBasicEmissionColor();
-                }
-
-                BuildingGridRoot.SetIsolatedIndicatorShown(shown);
-            };
-            buildingInfo.InventoryItem.OnConflictedHandler = BuildingGridRoot.SetGridConflicted;
-            buildingInfo.InventoryItem.OnResetConflictHandler = BuildingGridRoot.ResetAllGridConflict;
+            BuildingModelRoot.SetBuildingBasicEmissionColor(CommonUtils.HTMLColorToColor("#E42835"));
+        }
+        else
+        {
+            BuildingModelRoot.ResetBuildingBasicEmissionColor();
         }
 
-        BuildingInfo = buildingInfo;
-        GridPos.ApplyGridPosToLocalTransXZ(BuildingInfo.InventoryItem.GridPos_World, transform, ConfigManager.GRID_SIZE);
-        City = parentCity;
-        BuildingGridRoot.SetInUsed(true);
+        BuildingGridRoot.SetIsolatedIndicatorShown(shown);
     }
 
     private void HighLightColorChange(Color highLightColor, float intensity)
     {
         BuildingModelRoot.SetDefaultHighLightEmissionColor(highLightColor * intensity);
     }
-
-#if UNITY_EDITOR
-
-    [HideInPlayMode]
-    [TitleGroup("Editor Params")]
-    [LabelText("拍照角度")]
-    public float ScreenShotAngle;
-
-    [MenuItem("开发工具/配置/序列化建筑占位")]
-    public static void SerializeBuildingOccupiedPositions()
-    {
-        PrefabManager.Instance.LoadPrefabs();
-        Dictionary<string, BuildingOriginalOccupiedGridInfo> dict = new Dictionary<string, BuildingOriginalOccupiedGridInfo>();
-        List<Building> buildings = new List<Building>();
-        ConfigManager.LoadAllConfigs();
-        try
-        {
-            foreach (KeyValuePair<string, BuildingConfig> kv in ConfigManager.BuildingConfigDict)
-            {
-                GameObject prefab = PrefabManager.Instance.GetPrefab(kv.Key);
-                if (prefab != null)
-                {
-                    Debug.Log($"建筑占位序列化成功: <color=\"#00ADFF\">{kv.Key}</color>");
-                    Building building = Instantiate(prefab).GetComponent<Building>();
-                    buildings.Add(building);
-                    BuildingOriginalOccupiedGridInfo info = new BuildingOriginalOccupiedGridInfo();
-                    info.BuildingOccupiedGridPositionList = building.BuildingGridRoot.GetOccupiedPositions();
-                    dict.Add(kv.Key, info);
-                }
-            }
-
-            if (!Directory.Exists(ConfigManager.BuildingOriginalOccupiedGridInfoJsonFileFolder))
-            {
-                Directory.CreateDirectory(ConfigManager.BuildingOriginalOccupiedGridInfoJsonFileFolder);
-            }
-
-            string json = JsonConvert.SerializeObject(dict, Formatting.Indented);
-            StreamWriter sw = new StreamWriter(ConfigManager.BuildingOriginalOccupiedGridInfoJsonFilePath);
-            sw.Write(json);
-            sw.Close();
-        }
-        catch (Exception e)
-        {
-            Debug.LogError(e.ToString());
-        }
-        finally
-        {
-            foreach (Building building in buildings)
-            {
-                DestroyImmediate(building.gameObject);
-            }
-        }
-    }
-
-#endif
 
     public void SetShown(bool shown)
     {

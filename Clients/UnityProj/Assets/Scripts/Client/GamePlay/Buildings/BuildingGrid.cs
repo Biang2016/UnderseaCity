@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using BiangStudio.GameDataFormat.Grid;
-using Sirenix.OdinInspector;
+﻿using BiangStudio.GameDataFormat.Grid;
 using UnityEngine;
 
 [ExecuteInEditMode]
@@ -42,7 +39,7 @@ public class BuildingGrid : MonoBehaviour
 
     public GridPos GetGridPos()
     {
-        return GridPos.GetGridPosByLocalTransXZ(transform, ConfigManager.GRID_SIZE);
+        return GridPos.GetGridPosByLocalTransXZ(transform, 1);
     }
 
     void OnDrawGizmos()

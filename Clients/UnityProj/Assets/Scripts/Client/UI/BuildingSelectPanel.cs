@@ -29,13 +29,13 @@ public class BuildingSelectPanel : BaseUIPanel
 
     private Dictionary<string, BuildingButton> BuildingButtonDict = new Dictionary<string, BuildingButton>();
 
-    public void Init()
+    public void Init(List<Building> buildingList)
     {
-        foreach (KeyValuePair<string, BuildingConfig> kv in ConfigManager.BuildingConfigDict)
+        foreach (Building buildingPrefab in buildingList)
         {
             BuildingButton bb = GameObjectPoolManager.Instance.PoolDict[GameObjectPoolManager.PrefabNames.BuildingButton].AllocateGameObject<BuildingButton>(ButtonContainer);
-            bb.Initialize(kv.Value);
-            BuildingButtonDict.Add(kv.Key, bb);
+            bb.Initialize(buildingPrefab.BuildingInfo);
+            BuildingButtonDict.Add(buildingPrefab.BuildingInfo.buildingKey, bb);
         }
     }
 

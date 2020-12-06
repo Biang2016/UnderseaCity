@@ -5,7 +5,7 @@ using BiangStudio.Singleton;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ClientGameManager : MonoSingleton<ClientGameManager>
+public class GameManager : MonoSingleton<GameManager>
 {
     #region Managers
 

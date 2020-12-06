@@ -13,8 +13,7 @@ public class GameObjectPoolManager : TSingletonBaseManager<GameObjectPoolManager
         DebugPanelColumn,
         DebugPanelButton,
         DebugPanelSlider,
-        CityEditorAreaGrid,
-        City,
+        CityInventoryGird,
         BuildingButton,
     }
 
@@ -24,8 +23,7 @@ public class GameObjectPoolManager : TSingletonBaseManager<GameObjectPoolManager
         {PrefabNames.DebugPanelColumn, 4},
         {PrefabNames.DebugPanelButton, 4},
         {PrefabNames.DebugPanelSlider, 4},
-        {PrefabNames.CityEditorAreaGrid, 100},
-        {PrefabNames.City, 1},
+        {PrefabNames.CityInventoryGird, 100},
         {PrefabNames.BuildingButton, 10},
     };
 
@@ -36,7 +34,6 @@ public class GameObjectPoolManager : TSingletonBaseManager<GameObjectPoolManager
     public Dictionary<PrefabNames, GameObjectPool> PoolDict = new Dictionary<PrefabNames, GameObjectPool>();
     public Dictionary<ushort, GameObjectPool> FXDict = new Dictionary<ushort, GameObjectPool>();
     public Dictionary<ProjectileType, GameObjectPool> ProjectileDict = new Dictionary<ProjectileType, GameObjectPool>();
-    public Dictionary<string, GameObjectPool> BuildingBasePoolDict = new Dictionary<string, GameObjectPool>();
 
     private Transform Root;
 
@@ -92,20 +89,6 @@ public class GameObjectPoolManager : TSingletonBaseManager<GameObjectPoolManager
                 ProjectileDict.Add(projectileType, pool);
                 PoolObject po = go_Prefab.GetComponent<PoolObject>();
                 pool.Initiate(po, 20);
-            }
-        }
-
-        foreach (KeyValuePair<string, BuildingConfig> kv in ConfigManager.BuildingConfigDict)
-        {
-            GameObject go_Prefab = PrefabManager.Instance.GetPrefab(kv.Value.BuildingKey);
-            if (go_Prefab)
-            {
-                GameObject go = new GameObject("Pool_" + kv.Value.BuildingKey);
-                GameObjectPool pool = go.AddComponent<GameObjectPool>();
-                pool.transform.SetParent(Root);
-                BuildingBasePoolDict.Add(kv.Value.BuildingKey, pool);
-                PoolObject po = go_Prefab.GetComponent<PoolObject>();
-                pool.Initiate(po, 100);
             }
         }
 

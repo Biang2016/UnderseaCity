@@ -3,7 +3,7 @@ using BiangStudio.ObjectPool;
 using TMPro;
 using UnityEngine;
 
-public class CityEditorAreaGrid : PoolObject
+public class CityInventoryGrid : PoolObject
 {
     [SerializeField]
     private TextMeshPro GridPosText;

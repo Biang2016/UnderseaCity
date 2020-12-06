@@ -1,35 +1,18 @@
-﻿using BiangStudio.DragHover;
+﻿using BiangStudio;
+using BiangStudio.DragHover;
 using BiangStudio.GameDataFormat.Grid;
 using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider))]
 public class CityEditAreaIndicator : DragAreaIndicator
 {
-    [SerializeField]
-    private MeshRenderer MeshRenderer_Range;
-
-    [SerializeField]
-    private MeshRenderer MeshRenderer_Grid;
-
-    [SerializeField]
-    private CityEditAreaGridRoot CityEditAreaGridRoot;
-
+    public CityInventory CityInventory;
     private DragProcessor DragProcessor;
 
-    void Start()
+    public void Init(CityInventory cityInventory)
     {
-    }
-
-    public void Init(CityInfo cityInfo)
-    {
+        CityInventory = cityInventory;
         DragProcessor = DragManager.Instance.GetDragProcessor<Building>();
-        Clear();
-        CityEditAreaGridRoot.Init();
-    }
-
-    public void Clear()
-    {
-        CityEditAreaGridRoot.Clear();
     }
 
     private bool onMouseDrag_Right = false;
@@ -98,7 +81,7 @@ public class CityEditAreaIndicator : DragAreaIndicator
                         GridPos delta_local_GP = GridPos.GetGridPosByPointXZ(delta, 1);
                         if (delta_local_GP.x != 0 || delta_local_GP.z != 0)
                         {
-                            LevelManager.Instance.City.CityInfo.CityInventory.MoveAllItemTogether(delta_local_GP);
+                            LevelManager.Instance.City.CityInventory.MoveAllItemTogether(delta_local_GP);
                             mouseDownPos_Left = pos_world;
                         }
                     }
@@ -131,7 +114,12 @@ public class CityEditAreaIndicator : DragAreaIndicator
             if (hit.collider == BoxCollider)
             {
                 pos_world = hit.point;
-                //todo!!!!!
+                Vector3 pos_local_absolute = CityInventory.City.BuildingContainer.transform.InverseTransformPoint(pos_world);
+                Vector3 containerSize = new Vector3(CityInventory.Columns * CityInventory.GridSize, 0, CityInventory.Rows * CityInventory.GridSize);
+                pos_local = new Vector3(pos_local_absolute.x + containerSize.x / 2f - CityInventory.GridSize / 2f, 0, pos_local_absolute.z + containerSize.z / 2f - CityInventory.GridSize / 2f);
+                pos_matrix = new Vector3(pos_local_absolute.x + containerSize.x / 2f, 0, pos_local_absolute.z + containerSize.z / 2f);
+                Vector3 pos_matrix_round = new Vector3(pos_matrix.x - CityInventory.GridSize / 2f, 0, pos_matrix.z - CityInventory.GridSize / 2f);
+                gp_matrix = GridPos.GetGridPosByPointXZ(pos_matrix_round, CityInventory.GridSize);
                 return true;
             }
             else
@@ -140,14 +128,7 @@ public class CityEditAreaIndicator : DragAreaIndicator
             }
         }
 
+        pos_world = CommonUtils.GetIntersectWithLineAndPlane(ray.origin, ray.direction, Vector3.up, transform.position);
         return false;
-    }
-
-    public void SetShown(bool shown)
-    {
-        MeshRenderer_Range.enabled = shown;
-        MeshRenderer_Grid.enabled = shown;
-        BoxCollider.enabled = shown;
-        CityEditAreaGridRoot.gameObject.SetActive(shown);
     }
 }

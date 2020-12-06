@@ -9,7 +9,8 @@ using UnityEngine.EventSystems;
 
 public class LevelManager : MonoSingleton<LevelManager>
 {
-    internal City City;
+    public CityConfiguration CityConfiguration;
+    public City City;
     internal Transform CityContainerRoot;
     internal BuildingSelectPanel BuildingSelectPanel;
 
@@ -17,14 +18,9 @@ public class LevelManager : MonoSingleton<LevelManager>
 
     public void StartGame()
     {
-        CityInfo cityInfo = new CityInfo(new CityConfig());
-        AddCity(cityInfo);
-
         BuildingSelectPanel = UIManager.Instance.ShowUIForms<BuildingSelectPanel>();
-        BuildingSelectPanel.Init();
-
+        BuildingSelectPanel.Init(CityConfiguration.BuildingPrefabList);
         CurrentSelectedBuildingKey = "";
-
         MouseHoverManager.Instance.M_StateMachine.SetState(MouseHoverManager.StateMachine.States.Building);
     }
 
@@ -44,46 +40,53 @@ public class LevelManager : MonoSingleton<LevelManager>
             OnClearSelectBuildingButton();
         }
 
-        GridPosR worldGP = DragManager.Instance.GetDragProcessor<Building>().CurrentMousePosition_World.ToGridPosR_XZ();
-        GridPosR matrixGP = City.CityInfo.CityInventory.CoordinateTransformationHandler_FromPosToMatrixIndex.Invoke(worldGP);
-        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
-        {
-            InventoryItem previewItem = City.CityInfo.CityInventory.InventoryInfo.PreviewInventoryItem;
-            if (previewItem != null)
-            {
-                if (City.CityInfo.CityInventory.CheckSpaceAvailable(previewItem.OccupiedGridPositions_Matrix))
-                {
-                    City.CityInfo.CityInventory.PutDownItem(previewItem);
-                }
-                else
-                {
-                    City.CityInfo.CityInventory.RemoveItem(previewItem, true);
-                }
-            }
-        }
+        City.CityEditAreaIndicator.GetMousePosOnThisArea(out Vector3 pos_world, out Vector3 pos_local, out Vector3 pos_matrix, out GridPos gp_matrix);
 
         if (!string.IsNullOrWhiteSpace(CurrentSelectedBuildingKey) && !EventSystem.current.IsPointerOverGameObject())
         {
-            if (City.CityInfo.CityInventory.InventoryInfo.PreviewInventoryItem == null)
+            if (City.CityInventory.InventoryInfo.PreviewInventoryItem == null)
             {
-                BuildingInfo bi = new BuildingInfo(ConfigManager.BuildingConfigDict[CurrentSelectedBuildingKey].Clone());
-                City.CityInfo.AddBuildingInfo(bi, matrixGP, true);
+                BuildingInfo bi = City.BuildingInfoDict[CurrentSelectedBuildingKey].Clone();
+                InventoryItem ii = new InventoryItem(bi, City.CityInventory, gp_matrix);
+                City.CityInventory.AddPreviewItem(ii);
             }
 
-            City.CityInfo.CityInventory.InventoryInfo.PreviewInventoryItem?.SetGridPosition(matrixGP);
+            if (City.CityInventory.InventoryInfo.PreviewInventoryItem != null)
+            {
+                GridPosR newGPR = gp_matrix;
+                newGPR.orientation = City.CityInventory.InventoryInfo.PreviewInventoryItem.GridPos_Matrix.orientation;
+                City.CityInventory.InventoryInfo.PreviewInventoryItem?.SetGridPosition(newGPR);
+            }
         }
-    }
 
-    private void AddCity(CityInfo cityInfo)
-    {
-        City = GameObjectPoolManager.Instance.PoolDict[GameObjectPoolManager.PrefabNames.City].AllocateGameObject<City>(CityContainerRoot);
-        City.Initialize(cityInfo);
-        City.OnRemoveCitySuc = RemoveCity;
-    }
+        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
+        {
+            InventoryItem previewItem = City.CityInventory.InventoryInfo.PreviewInventoryItem;
+            if (previewItem != null)
+            {
+                if (City.CityInventory.CheckSpaceAvailable(previewItem.OccupiedGridPositions_Matrix))
+                {
+                    City.CityInventory.PutDownItem(previewItem);
+                }
+                else
+                {
+                    City.CityInventory.RemoveItem(previewItem, true);
+                }
+            }
+        }
 
-    private void RemoveCity(City city)
-    {
-        city.PoolRecycle();
+        if (City.CityInventory.RotateItemKeyDownHandler != null && City.CityInventory.RotateItemKeyDownHandler.Invoke())
+        {
+            InventoryItem previewItem = City.CityInventory.InventoryInfo.PreviewInventoryItem;
+            if (previewItem != null)
+            {
+                Building building = City.GetBuilding(previewItem.GUID);
+                if (building != null)
+                {
+                    building.Rotate();
+                }
+            }
+        }
     }
 
     public void OnClickSelectBuildingButton(string buildingKey)
@@ -95,9 +98,9 @@ public class LevelManager : MonoSingleton<LevelManager>
 
     public void OnClearSelectBuildingButton()
     {
-        if (City.CityInfo.CityInventory.InventoryInfo.PreviewInventoryItem != null)
+        if (City.CityInventory.InventoryInfo.PreviewInventoryItem != null)
         {
-            ((BuildingInfo) (City.CityInfo.CityInventory.InventoryInfo.PreviewInventoryItem.ItemContentInfo)).RemoveBuildingInfo();
+            City.CityInventory.RemoveItem(City.CityInventory.InventoryInfo.PreviewInventoryItem, true);
         }
 
         CurrentSelectedBuildingKey = "";
