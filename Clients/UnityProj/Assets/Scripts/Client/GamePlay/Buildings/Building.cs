@@ -13,7 +13,6 @@ public class Building : MonoBehaviour, IMouseHoverComponent, IDraggable
     public BuildingInfo BuildingInfo;
 
     public BuildingGridRoot BuildingGridRoot;
-    public BuildingModelRoot BuildingModelRoot;
 
     public void Initialize(City parentCity, InventoryItem inventoryItem)
     {
@@ -74,26 +73,7 @@ public class Building : MonoBehaviour, IMouseHoverComponent, IDraggable
 
     private void OnInventoryItemOnIsolated(bool shown)
     {
-        if (shown)
-        {
-            BuildingModelRoot.SetBuildingBasicEmissionColor(CommonUtils.HTMLColorToColor("#E42835"));
-        }
-        else
-        {
-            BuildingModelRoot.ResetBuildingBasicEmissionColor();
-        }
-
         BuildingGridRoot.SetIsolatedIndicatorShown(shown);
-    }
-
-    private void HighLightColorChange(Color highLightColor, float intensity)
-    {
-        BuildingModelRoot.SetDefaultHighLightEmissionColor(highLightColor * intensity);
-    }
-
-    public void SetShown(bool shown)
-    {
-        BuildingModelRoot.SetShown(shown);
     }
 
     #region IMouseHoverComponent

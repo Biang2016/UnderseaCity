@@ -92,6 +92,7 @@ GameObject:
   - component: {fileID: 6554345285009307750}
   - component: {fileID: 6554345285009307751}
   - component: {fileID: 3251745871777861553}
+  - component: {fileID: 9138677011120454542}
   m_Layer: 5
   m_Name: BuildingButton
   m_TagString: Untagged
@@ -170,7 +171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -215,3 +216,61 @@ MonoBehaviour:
   IsRecycled: 0
   Button: {fileID: 6554345285009307751}
   Text: {fileID: 6554345284618644685}
+  BuildingInfo:
+    buildingKey: 0
+    requireBuildingCoverList: []
+    forbidBuildingCover:
+      Mask_Part1: 0
+      Mask_Part2: 0
+      Mask_Part3: 0
+    provideBuildingCoverByOccupation:
+      Mask_Part1: 0
+      Mask_Part2: 0
+      Mask_Part3: 0
+    provideBuildingCoverInnerRange:
+      Mask_Part1: 0
+      Mask_Part2: 0
+      Mask_Part3: 0
+    provideBuildingCoverInnerRange_Radius: 0
+    provideBuildingCoverOuterRange:
+      Mask_Part1: 0
+      Mask_Part2: 0
+      Mask_Part3: 0
+    provideBuildingCoverOuterRange_Radius: 0
+    BudgetCost: 100
+    OxygenCost: 100
+    OxygenCapacity: 0
+    PopulationCapacity: 0
+    BudgetProduction: 0
+    OxygenProduction: 0
+    BudgetConsumption: 0
+    OxygenConsumption: 0
+    NeedAllOccupationValid: 0
+    BuildingOccupiedGridPositionList: []
+    buildingType: 0
+    englishName: 
+    chineseName: 
+    itemBasicInfo: 
+    itemDetailedInfo_Requires: 
+    itemDetailedInfo_Provides: 
+    itemSprite: {fileID: 0}
+    color: {r: 0, g: 0, b: 0, a: 0}
+  OnMouseEnterAndLeave: {fileID: 9138677011120454542}
+--- !u!114 &9138677011120454542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6554345285009307753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54d4562ee7b724d46a4ab4b9176f542a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PointerEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  PointerExit:
+    m_PersistentCalls:
+      m_Calls: []

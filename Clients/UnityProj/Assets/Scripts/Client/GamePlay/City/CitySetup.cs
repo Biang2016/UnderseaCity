@@ -36,6 +36,12 @@ public class CitySetup : MonoBehaviour
 
     private void Init()
     {
+        foreach (Building buildingPrefab in BuildingPrefabList)
+        {
+            LevelManager.Instance.BuildingPrefabDict.Add(buildingPrefab.BuildingInfo.buildingKey, buildingPrefab);
+            LevelManager.Instance.BuildingInfoDict.Add(buildingPrefab.BuildingInfo.buildingKey, buildingPrefab.BuildingInfo);
+        }
+
         DragProcessor<Building> DragProcessor_Building = new DragProcessor<Building>();
         DragProcessor_Building.Init(
             UIManager.Instance.UICamera,
@@ -67,7 +73,7 @@ public class CitySetup : MonoBehaviour
         );
 
         CityInventory.ToggleDebugKeyDownHandler = () => Input.GetKeyDown(KeyCode.BackQuote); // Toggle debug log
-        City.Init(CityInventory, CityConfig, BuildingPrefabList);
+        City.Init(CityInventory, CityConfig);
         CityInventory.City = City;
     }
 }

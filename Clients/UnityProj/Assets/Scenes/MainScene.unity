@@ -174,6 +174,7 @@ MonoBehaviour:
   - {fileID: 3938194734319382156, guid: 9e728f7e6716ccc4d8a249e0df80c304, type: 3}
   - {fileID: 6635406714324194422, guid: f06cef906b21ea94eb0a209beb4ef878, type: 3}
   - {fileID: 6635406714324194422, guid: 63d7664cc8dbb0f4583c8239e28f7624, type: 3}
+  - {fileID: 3935650678939033467, guid: 426c7ffe749d1da429f1a516228939fa, type: 3}
   BuildingLayerMask:
     serializedVersion: 2
     m_Bits: 256
@@ -408,6 +409,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: City
+      objectReference: {fileID: 0}
+    - target: {fileID: 2833936649195705392, guid: 78ac0f87a3d9c4c40b3a1e89047a9f75,
+        type: 3}
+      propertyPath: SecondPerMinutes
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2833936649195705392, guid: 78ac0f87a3d9c4c40b3a1e89047a9f75,
+        type: 3}
+      propertyPath: PerlinTerrainFactor.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2833936649195705392, guid: 78ac0f87a3d9c4c40b3a1e89047a9f75,
+        type: 3}
+      propertyPath: PerlinTerrainFactor.y
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3410644186474393432, guid: 78ac0f87a3d9c4c40b3a1e89047a9f75,
         type: 3}

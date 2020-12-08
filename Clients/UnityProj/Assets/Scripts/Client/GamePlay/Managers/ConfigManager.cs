@@ -3,7 +3,6 @@ using System.IO;
 using System.Linq;
 using BiangStudio;
 using BiangStudio.Singleton;
-using Newtonsoft.Json;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using UnityEngine;
@@ -101,10 +100,10 @@ public class ConfigManager : TSingletonBaseManager<ConfigManager>
                 }
             }
 
-            string json = JsonConvert.SerializeObject(TypeIndexDict, Formatting.Indented);
-            StreamWriter sw = new StreamWriter(TypeNamesConfig_File);
-            sw.Write(json);
-            sw.Close();
+            //string json = JsonConvert.SerializeObject(TypeIndexDict, Formatting.Indented);
+            //StreamWriter sw = new StreamWriter(TypeNamesConfig_File);
+            //sw.Write(json);
+            //sw.Close();
         }
 #endif
 
@@ -118,7 +117,7 @@ public class ConfigManager : TSingletonBaseManager<ConfigManager>
                 sr.Close();
                 TypeIndexDict.Clear();
                 TypeNameDict.Clear();
-                TypeIndexDict = JsonConvert.DeserializeObject<Dictionary<string, ushort>>(content);
+                //TypeIndexDict = JsonConvert.DeserializeObject<Dictionary<string, ushort>>(content);
                 foreach (KeyValuePair<string, ushort> kv in TypeIndexDict)
                 {
                     TypeNameDict.Add(kv.Value, kv.Key);

@@ -10,6 +10,16 @@ public enum BuildingKey
     LargeDome = 5,
     UnderseaApartment_Lower = 6,
     UnderseaApartment_Higher = 7,
+    TreasureHunterHub = 8,
+}
+
+public enum TerrainType
+{
+    None,
+    Gold_1,
+    Gold_2,
+    Gold_3,
+    Rock,
 }
 
 [Serializable]
@@ -97,18 +107,23 @@ public enum BuildingCoverMask_Part1
     UnderseaApartment_LowerOccupy = 1 << 15,
     UnderseaApartment_HigherCover = 1 << 12,
     UnderseaApartment_HigherOccupy = 1 << 16,
+    TreasureHunterHubCover = 1 << 17,
+    TreasureHunterHubOccupy = 1 << 18,
 }
 
 [Flags]
 public enum BuildingCoverMask_Part2
 {
     None = 0,
-    
+    Gold_1 = 1 << 0,
+    Gold_2 = 1 << 1,
+    Gold_3 = 1 << 2,
+    Gold = Gold_1| Gold_2 | Gold_3,
+    Rock = 1 << 3,
 }
 
 [Flags]
 public enum BuildingCoverMask_Part3
 {
     None = 0,
-   
 }

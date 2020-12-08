@@ -1,4 +1,5 @@
-﻿using BiangStudio.ObjectPool;
+﻿using BiangStudio.GamePlay.UI;
+using BiangStudio.ObjectPool;
 using UnityEngine.UI;
 
 public class BuildingButton : PoolObject
@@ -7,6 +8,8 @@ public class BuildingButton : PoolObject
     public Text Text;
 
     public BuildingInfo BuildingInfo;
+
+    public OnMouseEnterAndLeave OnMouseEnterAndLeave;
 
     public override void OnRecycled()
     {
